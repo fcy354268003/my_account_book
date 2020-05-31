@@ -94,6 +94,42 @@
             android:enabled="false" />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/extra_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:enabled="false"
+            android:hint="额外花费说明：" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="额外总费用："
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/extra_cost1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:enabled="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/total_cost"
         android:layout_width="wrap_content"
@@ -102,14 +138,6 @@
         android:layout_marginTop="20dp"
         android:text="总共花费："
         android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/extra_cost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="额外花费说明："
-        android:enabled="false"/>
 
     <LinearLayout
         android:layout_width="match_parent"

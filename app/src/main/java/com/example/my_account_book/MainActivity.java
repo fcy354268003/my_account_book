@@ -31,17 +31,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText mBreakfast, mLaunch, mDinner, mDrink, extra_cost_description;
     private TextView total;
     private Button bSave, bEdit;
+    private EditText extra_cost11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        extra_cost11 = findViewById(R.id.extra_cost1);
         change = findViewById(R.id.change_date);
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, date_select.class);
-                intent.putExtra("time",time);
+                intent.putExtra("time", time);
                 startActivityForResult(intent, 1);
             }
         });
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             today = new com.example.my_account_book.Date();
             today.setDate(time);
         }
+        extra_cost11.setText(today.getExtra_cost() + "");
         mBreakfast.setText(today.getBreakfast_cost() + "");
         mLaunch.setText(today.getLunch_cost() + "");
         mDinner.setText(today.getDinner_cost() + "");
@@ -89,13 +92,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mBreakfast.setEnabled(!enabled);
                 mLaunch.setEnabled(!enabled);
                 mDinner.setEnabled(!enabled);
+                extra_cost11.setEnabled(!enabled);
                 extra_cost_description.setEnabled(!enabled);
-                if(enabled){
-//                    Toast.makeText(this, "取消编辑", Toast.LENGTH_SHORT).show();
-                    MyToast.showMessage(this,"取消编辑");
-                }else {
-//                    Toast.makeText(this, "开始编辑", Toast.LENGTH_SHORT).show();
-                    MyToast.showMessage(this,"开始编辑");
+                if (enabled) {
+                    MyToast.showMessage(this, "取消编辑");
+                } else {
+                    MyToast.showMessage(this, "开始编辑");
                 }
                 enabled = !enabled;
                 break;
@@ -104,8 +106,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mBreakfast.setEnabled(false);
                 mLaunch.setEnabled(false);
                 mDinner.setEnabled(false);
+                extra_cost11.setEnabled(false);
                 extra_cost_description.setEnabled(false);
-                int breakfast = 0, launch = 0, dinner = 0, drink = 0, total = 0;
+                int breakfast = 0, launch = 0, dinner = 0, drink = 0, total = 0, extral_cost = 0;
                 if (!TextUtils.isEmpty(mBreakfast.getText().toString()))
                     breakfast = Integer.valueOf(mBreakfast.getText().toString());
                 if (!TextUtils.isEmpty(mLaunch.getText().toString()))
@@ -114,15 +117,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     dinner = Integer.valueOf(mDinner.getText().toString());
                 if (!TextUtils.isEmpty(mDrink.getText().toString()))
                     drink = Integer.valueOf(mDrink.getText().toString());
-                total = breakfast + dinner + drink + launch;
+                if (!TextUtils.isEmpty(extra_cost11.getText().toString()))
+                    extral_cost = Integer.valueOf(extra_cost11.getText().toString());
+                    total = breakfast + dinner + drink + launch + extral_cost;
                 today.setBreakfast_cost(breakfast);
                 today.setLunch_cost(launch);
+                today.setExtra_cost(extral_cost);
                 today.setTotal(total);
                 today.setDinner_cost(dinner);
+                today.setDrink(drink);
                 today.setExtra_cost_description(extra_cost_description.getText().toString());
                 today.save();
-//                Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
-                MyToast.showMessage(this,"保存成功");
+                MyToast.showMessage(this, "保存成功");
                 break;
             default:
         }

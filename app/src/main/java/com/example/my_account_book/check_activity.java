@@ -33,10 +33,8 @@ public class check_activity extends AppCompatActivity {
                     Intent intent = new Intent(check_activity.this,MainActivity.class);
                     startActivity(intent);
                     finish();
-//                    Toast.makeText(check_activity.this, "登陆成功", Toast.LENGTH_SHORT).show();
                     MyToast.showMessage(check_activity.this,"登陆成功");
                 }
-//                else Toast.makeText(check_activity.this, "登陆失败", Toast.LENGTH_SHORT).show();
                 else MyToast.showMessage(check_activity.this, "登陆失败");
             }
         });

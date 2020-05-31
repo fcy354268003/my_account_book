@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <litepal>
     <dbname value="cost_account"/>
-    <version value="1"/>
+    <version value="2"/>
     <list>
         <mapping class="com.example.my_account_book.Date"/>
     </list>

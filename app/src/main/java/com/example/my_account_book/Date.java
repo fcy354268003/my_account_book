@@ -12,6 +12,15 @@ public class Date extends LitePalSupport {
     private int total;
     private int drink;
     private String extra_cost_description;
+    private int extra_cost;
+
+    public int getExtra_cost() {
+        return extra_cost;
+    }
+
+    public void setExtra_cost(int extra_cost) {
+        this.extra_cost = extra_cost;
+    }
 
     public String getExtra_cost_description() {
         return extra_cost_description;
