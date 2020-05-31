@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.litepal.LitePal;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, date_select.class);
+                intent.putExtra("time",time);
                 startActivityForResult(intent, 1);
             }
         });
@@ -66,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         List<com.example.my_account_book.Date> dates = LitePal.where("date = ?", time).find(com.example.my_account_book.Date.class);
         if (!dates.isEmpty()) {
             today = dates.get(0);
-            Log.d(TAG, "init: 不是空");
         } else {
             today = new com.example.my_account_book.Date();
             today.setDate(time);
@@ -89,6 +90,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mLaunch.setEnabled(!enabled);
                 mDinner.setEnabled(!enabled);
                 extra_cost_description.setEnabled(!enabled);
+                if(enabled){
+//                    Toast.makeText(this, "取消编辑", Toast.LENGTH_SHORT).show();
+                    MyToast.showMessage(this,"取消编辑");
+                }else {
+//                    Toast.makeText(this, "开始编辑", Toast.LENGTH_SHORT).show();
+                    MyToast.showMessage(this,"开始编辑");
+                }
                 enabled = !enabled;
                 break;
             case R.id.save:
@@ -113,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 today.setDinner_cost(dinner);
                 today.setExtra_cost_description(extra_cost_description.getText().toString());
                 today.save();
+//                Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
+                MyToast.showMessage(this,"保存成功");
                 break;
             default:
         }
@@ -122,11 +132,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 1) {
-            Log.d(TAG, "onActivityResult: ");
             Bundle bundle = data.getBundleExtra("bundle");
             String newTime = bundle.getInt("year") + "-" + bundle.getInt("month") + "-" + bundle.getInt("day");
             time = newTime;
-            Log.d(TAG, "onActivityResult: " + newTime);
             mTextView.setText(time);
             init();
         }

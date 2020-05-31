@@ -24,10 +24,13 @@ public class date_select extends AppCompatActivity {
     private Button mConfirm;
     private List<Integer> time = new ArrayList<>();
     private static final String TAG = "date_select";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_select);
+        String stringExtra = getIntent().getStringExtra("time");
+        String[] split = stringExtra.split("-");
         year = findViewById(R.id.year);
         month = findViewById(R.id.month);
         day = findViewById(R.id.day);
@@ -38,20 +41,20 @@ public class date_select extends AppCompatActivity {
         for (int i = 1; i < 13; i++) {
             months.add(i);
         }
-        for (int i = 1; i < 31; i++) {
+        for (int i = 1; i < 32; i++) {
             days.add(i);
         }
         mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: "+time);
+                Log.d(TAG, "onClick: " + time);
                 Bundle bundle = new Bundle();
-                bundle.putInt("year",time.get(0));
-                bundle.putInt("month",time.get(1));
-                bundle.putInt("day",time.get(2));
+                bundle.putInt("year", time.get(0));
+                bundle.putInt("month", time.get(1));
+                bundle.putInt("day", time.get(2));
                 Intent i = new Intent();
-                i.putExtra("bundle",bundle);
-                setResult(1,i);
+                i.putExtra("bundle", bundle);
+                setResult(1, i);
                 finish();
             }
         });
@@ -91,5 +94,25 @@ public class date_select extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+        ArrayList<Integer> integers = new ArrayList<>();
+        for (String s : split) {
+            int x = Integer.valueOf(s);
+            integers.add(x);
+        }
+        for (int i = 0; i < 3; i++) {
+            switch (i) {
+                case 0:
+                    year.setSelection(integers.get(0) - 2020 );
+                    break;
+                case 1:
+                    month.setSelection(integers.get(1) - 1);
+                    break;
+                case 2:
+                    day.setSelection(integers.get(2) - 1);
+                    break;
+                default:
+            }
+        }
+
     }
 }

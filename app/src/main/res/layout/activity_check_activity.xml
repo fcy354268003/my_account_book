@@ -14,13 +14,13 @@
         android:textSize="50dp" />
 
     <EditText
-        android:inputType="textPassword"
         android:id="@+id/use_name"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:hint="用户标识：" />
+        android:hint="用户标识："
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/confirm"
