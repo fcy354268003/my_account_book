@@ -1,5 +1,6 @@
 package com.example.my_account_book;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,8 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.litepal.LitePal;
 
@@ -32,11 +38,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView total;
     private Button bSave, bEdit;
     private EditText extra_cost11;
-
+    private RefreshLayout refreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        refreshLayout = findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                init();
+                refreshLayout.finishRefresh(1000);
+                MyToast.showMessage(MainActivity.this,"刷新成功");
+            }
+        });
+        refreshLayout.setRefreshHeader(new BezierRadarHeader(this).setEnableHorizontalDrag(true));
         extra_cost11 = findViewById(R.id.extra_cost1);
         change = findViewById(R.id.change_date);
         change.setOnClickListener(new View.OnClickListener() {
