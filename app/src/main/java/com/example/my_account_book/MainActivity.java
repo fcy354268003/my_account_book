@@ -12,9 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
@@ -23,11 +22,14 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import org.litepal.LitePal;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private boolean enabled = false;
+    private SimpleDateFormat format;
+    private ImageView mLeft, mRight;
     private java.util.Date date;
     private TextView mTextView;
     private String time;
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button bSave, bEdit;
     private EditText extra_cost11;
     private RefreshLayout refreshLayout;
+    private int timeDifference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +53,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 init();
                 refreshLayout.finishRefresh(1000);
-                MyToast.showMessage(MainActivity.this,"刷新成功");
+                MyToast.showMessage(MainActivity.this, "刷新成功");
             }
         });
         refreshLayout.setRefreshHeader(new BezierRadarHeader(this).setEnableHorizontalDrag(true));
+        mLeft = findViewById(R.id.left);
+        mLeft.setOnClickListener(this);
+        mRight = findViewById(R.id.right);
+        mRight.setOnClickListener(this);
         extra_cost11 = findViewById(R.id.extra_cost1);
         change = findViewById(R.id.change_date);
         change.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mLaunch = findViewById(R.id.launch);
         mDinner = findViewById(R.id.dinner);
         mTextView = findViewById(R.id.today);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-M-d");
+        format = new SimpleDateFormat("yyyy-M-d");
         date = new Date();
         time = format.format(this.date);
         mTextView.setText(time);
@@ -102,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Calendar calendar = Calendar.getInstance();
         switch (v.getId()) {
             case R.id.edit:
                 mDrink.setEnabled(!enabled);
@@ -135,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     drink = Integer.valueOf(mDrink.getText().toString());
                 if (!TextUtils.isEmpty(extra_cost11.getText().toString()))
                     extral_cost = Integer.valueOf(extra_cost11.getText().toString());
-                    total = breakfast + dinner + drink + launch + extral_cost;
+                total = breakfast + dinner + drink + launch + extral_cost;
                 today.setBreakfast_cost(breakfast);
                 today.setLunch_cost(launch);
                 today.setExtra_cost(extral_cost);
@@ -145,6 +154,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 today.setExtra_cost_description(extra_cost_description.getText().toString());
                 today.save();
                 MyToast.showMessage(this, "保存成功");
+                break;
+            case R.id.left:
+                timeDifference--;
+                calendar.add(Calendar.DAY_OF_MONTH, timeDifference);
+                Date time1 = calendar.getTime();
+                time = format.format(time1);
+                mTextView.setText(time);
+                init();
+                break;
+            case R.id.right:
+                timeDifference++;
+                calendar.add(Calendar.DAY_OF_MONTH, timeDifference);
+                Date date1 = calendar.getTime();
+                time = format.format(date1);
+                mTextView.setText(time);
+                init();
                 break;
             default:
         }

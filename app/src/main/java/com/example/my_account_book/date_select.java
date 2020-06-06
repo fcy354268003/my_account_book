@@ -18,9 +18,9 @@ import java.util.List;
 
 public class date_select extends AppCompatActivity {
     private Spinner year, month, day;
-    private List<Integer> years = new ArrayList<>();
-    private List<Integer> months = new ArrayList<>();
-    private List<Integer> days = new ArrayList<>();
+    private List<String> years = new ArrayList<>();
+    private List<String> months = new ArrayList<>();
+    private List<String> days = new ArrayList<>();
     private Button mConfirm;
     private List<Integer> time = new ArrayList<>();
     private static final String TAG = "date_select";
@@ -36,13 +36,13 @@ public class date_select extends AppCompatActivity {
         day = findViewById(R.id.day);
         mConfirm = findViewById(R.id.confirm);
         for (int i = 2020; i < 2024; i++) {
-            years.add(i);
+            years.add(i + "年");
         }
         for (int i = 1; i < 13; i++) {
-            months.add(i);
+            months.add(i + "月");
         }
         for (int i = 1; i < 32; i++) {
-            days.add(i);
+            days.add(i + "日");
         }
         mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,9 +61,9 @@ public class date_select extends AppCompatActivity {
         time.add(0);
         time.add(0);
         time.add(0);
-        year.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, years));
-        month.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, months));
-        day.setAdapter(new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, days));
+        year.setAdapter(new MyAdapter(this, years));
+        month.setAdapter(new MyAdapter(this, months));
+        day.setAdapter(new MyAdapter(this, days));
         year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -102,7 +102,7 @@ public class date_select extends AppCompatActivity {
         for (int i = 0; i < 3; i++) {
             switch (i) {
                 case 0:
-                    year.setSelection(integers.get(0) - 2020 );
+                    year.setSelection(integers.get(0) - 2020);
                     break;
                 case 1:
                     month.setSelection(integers.get(1) - 1);
