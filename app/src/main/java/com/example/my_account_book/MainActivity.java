@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             today = new com.example.my_account_book.Date();
             today.setDate(time);
+            MyToast.showMessage(this, "亲，您在该日期还没有过记录");
         }
         extra_cost11.setText(today.getExtra_cost() + "");
         mBreakfast.setText(today.getBreakfast_cost() + "");
@@ -153,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 today.setDrink(drink);
                 today.setExtra_cost_description(extra_cost_description.getText().toString());
                 today.save();
+                enabled = !enabled;
                 MyToast.showMessage(this, "保存成功");
                 break;
             case R.id.left:
