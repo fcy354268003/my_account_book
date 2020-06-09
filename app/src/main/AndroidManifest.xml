@@ -10,8 +10,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="alarm"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
-            android:name=".date_select"></activity>
+            android:name=".date_select"
+            android:parentActivityName=".check_activity" />
         <activity android:name=".check_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:parentActivityName=".check_activity" />
     </application>
 
 </manifest>
