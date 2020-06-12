@@ -23,6 +23,7 @@ import android.media.tv.TvContentRating;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,13 +50,7 @@ public class check_activity extends AppCompatActivity implements View.OnClickLis
     private static final String TAG = "check_activity";
     private Switch prompting;
     private ImageView figure, guide_prompt, change_way;
-    private Handler handler = new Handler();
-    private Executor executor = new Executor() {
-        @Override
-        public void execute(Runnable command) {
-            handler.post(command);
-        }
-    };
+
     private boolean switch_boolean = false;
 
     @Override
@@ -75,6 +70,29 @@ public class check_activity extends AppCompatActivity implements View.OnClickLis
         figure.setOnClickListener(this);
         mConfirm.setOnClickListener(this);
         prompting.setChecked(switch_boolean);
+        String channel = getIntent().getStringExtra("channel");
+        if (!TextUtils.isEmpty(channel)) {
+            if (channel.equals("notification")) {
+                if (Biometric_tool.isBiometricAvailable(this)) {
+                    Biometric_tool.showBiometricPrompt(this);
+                } else {
+                    MyToast.showMessage(this, "指纹识别不可用");
+                }
+            }
+        }
+        Intent intent = new Intent(this,MyReceiver.class);
+        intent.setAction("alarm");
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,21);
+        calendar.set(Calendar.MINUTE,7);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,11,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 12, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        calendar.set(Calendar.MINUTE,10);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent1);
+        alarmManager.cancel(pendingIntent);
+        alarmManager.cancel(pendingIntent1);
     }
 
     private void initAlarm(boolean b) {
@@ -83,16 +101,20 @@ public class check_activity extends AppCompatActivity implements View.OnClickLis
         intent1.setAction("alarm");
         PendingIntent pendingIntent0 = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 2, intent1, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 2, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+//        boolean exist = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_NO_CREATE) != null;
+//        if (exist){
+//            MyToast.showMessage(this,"设置成功！！！");
+//        }
         if (b) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
             calendar.set(Calendar.HOUR_OF_DAY, 12);
-            calendar.set(Calendar.MINUTE, 10);
+            calendar.set(Calendar.MINUTE, 40);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent1);
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent0);
             calendar.set(Calendar.HOUR_OF_DAY, 7);
             calendar.set(Calendar.MINUTE, 20);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent0);
             calendar.set(Calendar.HOUR_OF_DAY, 18);
             calendar.set(Calendar.MINUTE, 20);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
@@ -161,8 +183,8 @@ public class check_activity extends AppCompatActivity implements View.OnClickLis
                 initAlarm(prompting.isChecked());
                 break;
             case R.id.figure:
-                if (isBiometricAvailable()) {
-                    showBiometricPrompt();
+                if (Biometric_tool.isBiometricAvailable(this)) {
+                    Biometric_tool.showBiometricPrompt(this);
                 } else {
                     MyToast.showMessage(this, "指纹识别不可用");
                 }
@@ -183,35 +205,5 @@ public class check_activity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private void showBiometricPrompt() {
-        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("亲，要指纹验证登录哦!")
-                .setNegativeButtonText("取消")
-                .build();
-        BiometricPrompt biometricPrompt = new BiometricPrompt(this, executor, new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
-                MyToast.showMessage(getApplicationContext(), "身份验证错误" + errString);
-            }
 
-            @Override
-            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-                toMain();
-            }
-
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-                MyToast.showMessage(getApplicationContext(), "身份验证失败");
-            }
-        });
-        biometricPrompt.authenticate(info);
-    }
-
-    private boolean isBiometricAvailable() {
-        BiometricManager biometricManager = BiometricManager.from(this);
-        return biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS;
-    }
 }

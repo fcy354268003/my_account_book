@@ -5,7 +5,7 @@
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
-        android:icon="@drawable/account"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="我的帐本"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -13,9 +13,9 @@
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
-                <action android:name="alarm"/>
+                <action android:name="alarm" />
             </intent-filter>
         </receiver>
 

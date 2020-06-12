@@ -22,7 +22,7 @@
                 android:id="@+id/left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="100dp"
+                android:layout_marginRight="80dp"
                 android:src="@drawable/guide_l" />
 
             <TextView
@@ -43,7 +43,7 @@
                 android:id="@+id/right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="80dp"
                 android:src="@drawable/guide_r" />
 
         </LinearLayout>
