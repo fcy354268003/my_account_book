@@ -43,7 +43,7 @@ import java.util.concurrent.Executor;
 
 import javax.crypto.spec.IvParameterSpec;
 
-public class check_activity extends AppCompatActivity implements View.OnClickListener {
+public class check_activity extends BaseActivity implements View.OnClickListener {
     private EditText mEditText;
     private Button mConfirm;
     private boolean isVisibility = false;
@@ -80,28 +80,21 @@ public class check_activity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         }
-        Intent intent = new Intent(this,MyReceiver.class);
-        intent.setAction("alarm");
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,21);
-        calendar.set(Calendar.MINUTE,7);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this,11,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 12, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        calendar.set(Calendar.MINUTE,10);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent1);
-        alarmManager.cancel(pendingIntent);
-        alarmManager.cancel(pendingIntent1);
+
     }
 
     private void initAlarm(boolean b) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent intent0 = new Intent(this, MyReceiver.class);
+        intent0.putExtra("flag",0);
         Intent intent1 = new Intent(this, MyReceiver.class);
+        intent1.putExtra("flag",1);
+        Intent intent2 = new Intent(this, MyReceiver.class);
+        intent2.putExtra("flag",2);
         intent1.setAction("alarm");
-        PendingIntent pendingIntent0 = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent0 = PendingIntent.getBroadcast(this, 0, intent0, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 2, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
 //        boolean exist = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_NO_CREATE) != null;
 //        if (exist){
 //            MyToast.showMessage(this,"设置成功！！！");
@@ -111,13 +104,13 @@ public class check_activity extends AppCompatActivity implements View.OnClickLis
             calendar.setTimeInMillis(System.currentTimeMillis());
             calendar.set(Calendar.HOUR_OF_DAY, 12);
             calendar.set(Calendar.MINUTE, 40);
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent1);
+            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent1);
             calendar.set(Calendar.HOUR_OF_DAY, 7);
             calendar.set(Calendar.MINUTE, 20);
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent0);
+            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent0);
             calendar.set(Calendar.HOUR_OF_DAY, 18);
             calendar.set(Calendar.MINUTE, 20);
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent2);
+            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent2);
             MyToast.showMessage(this, "提醒设置成功");
         } else {
             alarmManager.cancel(pendingIntent0);
@@ -130,7 +123,7 @@ public class check_activity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void toMain() {
-        Intent intent = new Intent(check_activity.this, MainActivity.class);
+        Intent intent = new Intent(check_activity.this, ContainerActivity.class);
         startActivity(intent);
         finish();
         MyToast.showMessage(check_activity.this, "登陆成功");

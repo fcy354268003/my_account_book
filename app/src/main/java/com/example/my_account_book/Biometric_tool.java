@@ -34,7 +34,7 @@ public class Biometric_tool {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                Intent intent = new Intent(context,MainActivity.class);
+                Intent intent = new Intent(context,ContainerActivity.class);
                 context.startActivity(intent);
                 ((FragmentActivity) context).finish();
             }

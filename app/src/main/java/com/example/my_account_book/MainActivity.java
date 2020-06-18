@@ -1,12 +1,7 @@
 package com.example.my_account_book;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
@@ -26,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private boolean enabled = false;
     private SimpleDateFormat format;
     private ImageView mLeft, mRight;
@@ -134,17 +132,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mDinner.setEnabled(false);
                 extra_cost11.setEnabled(false);
                 extra_cost_description.setEnabled(false);
-                int breakfast = 0, launch = 0, dinner = 0, drink = 0, total = 0, extral_cost = 0;
+                double breakfast = 0, launch = 0, dinner = 0, drink = 0, total = 0, extral_cost = 0;
                 if (!TextUtils.isEmpty(mBreakfast.getText().toString()))
-                    breakfast = Integer.valueOf(mBreakfast.getText().toString());
+                    breakfast = Double.valueOf(mBreakfast.getText().toString());
                 if (!TextUtils.isEmpty(mLaunch.getText().toString()))
-                    launch = Integer.valueOf(mLaunch.getText().toString());
+                    launch = Double.valueOf(mLaunch.getText().toString());
                 if (!TextUtils.isEmpty(mDinner.getText().toString()))
-                    dinner = Integer.valueOf(mDinner.getText().toString());
+                    dinner = Double.valueOf(mDinner.getText().toString());
                 if (!TextUtils.isEmpty(mDrink.getText().toString()))
-                    drink = Integer.valueOf(mDrink.getText().toString());
+                    drink = Double.valueOf(mDrink.getText().toString());
                 if (!TextUtils.isEmpty(extra_cost11.getText().toString()))
-                    extral_cost = Integer.valueOf(extra_cost11.getText().toString());
+                    extral_cost = Double.valueOf(extra_cost11.getText().toString());
                 total = breakfast + dinner + drink + launch + extral_cost;
                 today.setBreakfast_cost(breakfast);
                 today.setLunch_cost(launch);

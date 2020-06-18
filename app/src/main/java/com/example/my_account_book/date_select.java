@@ -16,7 +16,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class date_select extends AppCompatActivity {
+public class date_select extends BaseActivity {
     private Spinner year, month, day;
     private List<String> years = new ArrayList<>();
     private List<String> months = new ArrayList<>();

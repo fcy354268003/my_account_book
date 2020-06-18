@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/prompting" />
+    <TextView android:textSize="50.0dip" android:textColor="#ff3f51b5" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="80.0dip" android:text="个人记账簿" />
+    <LinearLayout android:gravity="center" android:layout_gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:layout_gravity="center" android:id="@id/ret" android:layout_width="200.0dip" android:layout_height="100.0dip" android:layout_marginTop="50.0dip">
+            <EditText android:id="@id/use_name" android:layout_width="150.0dip" android:layout_height="wrap_content" android:hint="用户标识：" android:layout_centerHorizontal="true" android:inputType="textPassword" />
+            <ImageView android:id="@id/figure" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/figuremark" android:layout_centerHorizontal="true" />
+            <ImageView android:id="@id/guide_promptinf" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="40.0dip" android:src="@drawable/guide_figure" android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </LinearLayout>
+    <Button android:layout_gravity="center" android:id="@id/confirm" android:background="@drawable/btn_2" android:layout_width="150.0dip" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:text="确认" />
+    <TextView android:textSize="20.0sp" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="100.0dip" android:text="切换登录方式:" android:layout_marginEnd="15.0dip" />
+    <ImageView android:layout_gravity="center" android:id="@id/change_way" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:src="@drawable/change_way" />
+</LinearLayout>

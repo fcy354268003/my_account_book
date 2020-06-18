@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout android:id="@id/refreshLayout" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:background="#27ffb13b" android:padding="20.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="30.0dip">
+            <ImageView android:id="@id/left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="80.0dip" android:src="@drawable/guide_l" />
+            <TextView android:textSize="20.0sp" android:id="@id/change_date" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="日期：" />
+            <TextView android:textSize="25.0sp" android:textColor="#ff000000" android:id="@id/today" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <ImageView android:id="@id/right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="80.0dip" android:src="@drawable/today" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="50.0dip">
+            <TextView android:textSize="20.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="早餐：" />
+            <EditText android:enabled="false" android:id="@id/breakfast" android:layout_width="50.0dip" android:layout_height="wrap_content" android:inputType="number" />
+            <TextView android:textSize="20.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="午餐：" />
+            <EditText android:enabled="false" android:id="@id/launch" android:layout_width="50.0dip" android:layout_height="wrap_content" android:inputType="number" />
+            <TextView android:textSize="20.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="晚餐：" />
+            <EditText android:enabled="false" android:id="@id/dinner" android:layout_width="50.0dip" android:layout_height="wrap_content" android:inputType="number" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:focusable="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip">
+            <TextView android:textSize="20.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="水费：" />
+            <EditText android:enabled="false" android:id="@id/drink_cost" android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="number" />
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <EditText android:enabled="false" android:id="@id/extra_cost" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:hint="额外花费说明：" />
+            <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:textSize="20.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="额外总费用：" />
+                <EditText android:enabled="false" android:layout_gravity="center_horizontal" android:id="@id/extra_cost1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="number" />
+            </LinearLayout>
+        </LinearLayout>
+        <TextView android:textSize="20.0sp" android:layout_gravity="center" android:id="@id/total_cost" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:text="总共花费：" />
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="30.0dip">
+            <Button android:id="@id/edit" android:background="@drawable/btn_1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="更改" />
+            <Button android:id="@id/save" android:background="@drawable/btn_1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="保存" android:layout_marginStart="80.0dip" />
+        </LinearLayout>
+    </LinearLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

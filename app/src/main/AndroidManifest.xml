@@ -10,6 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".ContainerActivity"></activity>
+        <activity android:name=".BaseActivity" />
+
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"

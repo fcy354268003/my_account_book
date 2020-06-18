@@ -6,19 +6,19 @@ import org.litepal.crud.LitePalSupport;
 
 public class Date extends LitePalSupport {
     private String date;
-    private int breakfast_cost;
-    private int lunch_cost;
-    private int dinner_cost;
-    private int total;
-    private int drink;
+    private double breakfast_cost;
+    private double lunch_cost;
+    private double dinner_cost;
+    private double total;
+    private double drink;
     private String extra_cost_description;
-    private int extra_cost;
+    private double extra_cost;
 
-    public int getExtra_cost() {
+    public double getExtra_cost() {
         return extra_cost;
     }
 
-    public void setExtra_cost(int extra_cost) {
+    public void setExtra_cost(double extra_cost) {
         this.extra_cost = extra_cost;
     }
 
@@ -30,11 +30,11 @@ public class Date extends LitePalSupport {
         this.extra_cost_description = extra_cost_description;
     }
 
-    public int getDrink() {
+    public double getDrink() {
         return drink;
     }
 
-    public void setDrink(int drink) {
+    public void setDrink(double drink) {
         this.drink = drink;
     }
 
@@ -54,37 +54,37 @@ public class Date extends LitePalSupport {
         this.date = date;
     }
 
-    public int getBreakfast_cost() {
+    public double getBreakfast_cost() {
         return breakfast_cost;
     }
 
-    public void setBreakfast_cost(int breakfast_cost) {
+    public void setBreakfast_cost(double breakfast_cost) {
         this.breakfast_cost = breakfast_cost;
     }
 
-    public int getLunch_cost() {
+    public double getLunch_cost() {
         return lunch_cost;
     }
 
-    public void setLunch_cost(int lunch_cost) {
+    public void setLunch_cost(double lunch_cost) {
         this.lunch_cost = lunch_cost;
     }
 
-    public int getDinner_cost() {
+    public double getDinner_cost() {
         return dinner_cost;
     }
 
-    public void setDinner_cost(int dinner_cost) {
+    public void setDinner_cost(double dinner_cost) {
         this.dinner_cost = dinner_cost;
     }
 
 
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 }
