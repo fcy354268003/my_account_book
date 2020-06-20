@@ -14,15 +14,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ContainerActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    private Fragment fragment[] = new Fragment[]{new summaryFragment(), new TodayFragment(), new mineFragment(),};
+    private Fragment[] fragment = new Fragment[]{new summaryFragment(), new TodayFragment(), new mineFragment(),};
     private Fragment currentFragment;
-
+    public static String time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment[1]).commit();
         initController();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment[1]).addToBackStack("fragment").commit();
+        currentFragment = fragment[1];
+        bottomNavigationView.setSelectedItemId(R.id.today);
     }
 
     private void initController() {
@@ -30,7 +32,7 @@ public class ContainerActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
                     case R.id.summary:
                         currentFragment = fragment[0];
                         break;
@@ -41,21 +43,11 @@ public class ContainerActivity extends AppCompatActivity {
                         currentFragment = fragment[2];
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, currentFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, currentFragment).addToBackStack("fragment").commit();
                 return true;
             }
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == 1) {
-            Bundle bundle = data.getBundleExtra("bundle");
-            if (bundle != null && currentFragment == fragment[1]) {
-                TodayFragment todayFragment = (TodayFragment) currentFragment;
-                todayFragment.changeTime(bundle);
-            }
-        }
-    }
+
 }

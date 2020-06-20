@@ -57,6 +57,12 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("time", time);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -101,9 +107,15 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         mLaunch = inflate.findViewById(R.id.launch);
         mDinner = inflate.findViewById(R.id.dinner);
         mTextView = inflate.findViewById(R.id.today);
-        format = new SimpleDateFormat("yyyy-M-d");
-        date = new java.util.Date();
-        time = format.format(this.date);
+        if (savedInstanceState != null && savedInstanceState.getString("time") != null) {
+            time = savedInstanceState.getString("time");
+        } else if (ContainerActivity.time != null) {
+            time = ContainerActivity.time;
+        } else {
+            format = new SimpleDateFormat("yyyy-M-d");
+            date = new java.util.Date();
+            time = format.format(this.date);
+        }
         mTextView.setText(time);
         Log.d(TAG, "onCreate: " + time);
         init();
@@ -190,6 +202,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
                 calendar.add(Calendar.DAY_OF_MONTH, timeDifference);
                 java.util.Date time1 = calendar.getTime();
                 time = format.format(time1);
+                ContainerActivity.time = time;
                 mTextView.setText(time);
                 init();
                 break;
@@ -198,16 +211,25 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
                 calendar.add(Calendar.DAY_OF_MONTH, timeDifference);
                 java.util.Date date1 = calendar.getTime();
                 time = format.format(date1);
+                ContainerActivity.time = time;
                 mTextView.setText(time);
                 init();
                 break;
             default:
         }
     }
-     void changeTime(Bundle bundle){
-        String newTime = bundle.getInt("year") + "-" + bundle.getInt("month") + "-" + bundle.getInt("day");
-        time = newTime;
-        mTextView.setText(time);
-        init();
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 1) {
+            Bundle bundle = data.getBundleExtra("bundle");
+            String newTime = bundle.getInt("year") + "-" + bundle.getInt("month") + "-" + bundle.getInt("day");
+            time = newTime;
+            ContainerActivity.time = time;
+            mTextView.setText(time);
+            init();
+        }
     }
 }

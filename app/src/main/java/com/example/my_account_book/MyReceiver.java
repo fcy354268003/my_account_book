@@ -67,21 +67,23 @@ public class MyReceiver extends BroadcastReceiver {
         }
     }
     private void setAlarm(Context context,final int FLAG){
-        AlarmManager alarmManager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
-        Intent intent0 = new Intent(context, MyReceiver.class);
-        intent0.putExtra("flag",0);
-        Intent intent1 = new Intent(context, MyReceiver.class);
-        intent1.putExtra("flag",1);
-        Intent intent2 = new Intent(context, MyReceiver.class);
-        intent2.putExtra("flag",2);
-        intent1.setAction("alarm");
-        PendingIntent pendingIntent0 = PendingIntent.getBroadcast(context, 0, intent0, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
         if (FLAG == 2) {
+            AlarmManager alarmManager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
+            Intent intent0 = new Intent(context, MyReceiver.class);
+            intent0.putExtra("flag",0);
+            Intent intent1 = new Intent(context, MyReceiver.class);
+            intent1.putExtra("flag",1);
+            Intent intent2 = new Intent(context, MyReceiver.class);
+            intent2.putExtra("flag",2);
+            intent1.setAction("alarm");
+            intent0.setAction("alarm");
+            intent2.setAction("alarm");
+            PendingIntent pendingIntent0 = PendingIntent.getBroadcast(context, 0, intent0, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent2 = PendingIntent.getBroadcast(context, 2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.DAY_OF_MONTH,1);
+            calendar.add(Calendar.DAY_OF_MONTH,1);
             calendar.set(Calendar.HOUR_OF_DAY, 12);
             calendar.set(Calendar.MINUTE, 40);
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent1);

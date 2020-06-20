@@ -80,7 +80,13 @@ public class check_activity extends BaseActivity implements View.OnClickListener
                 }
             }
         }
-
+//        Intent intent1 = new Intent(this, MyReceiver.class);
+//        intent1.putExtra("flag",1);
+//        intent1.setAction("alarm");
+//        boolean exist = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_NO_CREATE) != null;
+//        if (exist){
+//            MyToast.showMessage(this,"设置成功！！！");
+//        }
     }
 
     private void initAlarm(boolean b) {
@@ -92,6 +98,8 @@ public class check_activity extends BaseActivity implements View.OnClickListener
         Intent intent2 = new Intent(this, MyReceiver.class);
         intent2.putExtra("flag",2);
         intent1.setAction("alarm");
+        intent2.setAction("alarm");
+        intent0.setAction("alarm");
         PendingIntent pendingIntent0 = PendingIntent.getBroadcast(this, 0, intent0, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
