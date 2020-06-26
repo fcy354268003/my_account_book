@@ -37,6 +37,7 @@ import android.widget.Toast;
 
 import org.litepal.LitePal;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -87,16 +88,19 @@ public class check_activity extends BaseActivity implements View.OnClickListener
 //        if (exist){
 //            MyToast.showMessage(this,"设置成功！！！");
 //        }
+        Log.d(TAG, "onCreate: "+getFilesDir().getAbsolutePath());
+        Log.d(TAG, "onCreate: "+getCacheDir().getAbsolutePath());
+        Log.d(TAG, "onCreate: "+getExternalCacheDir().getAbsolutePath());
     }
 
     private void initAlarm(boolean b) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent0 = new Intent(this, MyReceiver.class);
-        intent0.putExtra("flag",0);
+        intent0.putExtra("flag", 0);
         Intent intent1 = new Intent(this, MyReceiver.class);
-        intent1.putExtra("flag",1);
+        intent1.putExtra("flag", 1);
         Intent intent2 = new Intent(this, MyReceiver.class);
-        intent2.putExtra("flag",2);
+        intent2.putExtra("flag", 2);
         intent1.setAction("alarm");
         intent2.setAction("alarm");
         intent0.setAction("alarm");
@@ -112,7 +116,7 @@ public class check_activity extends BaseActivity implements View.OnClickListener
             calendar.setTimeInMillis(System.currentTimeMillis());
             calendar.set(Calendar.HOUR_OF_DAY, 12);
             calendar.set(Calendar.MINUTE, 40);
-            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),pendingIntent1);
+            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent1);
             calendar.set(Calendar.HOUR_OF_DAY, 7);
             calendar.set(Calendar.MINUTE, 20);
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent0);
@@ -145,6 +149,7 @@ public class check_activity extends BaseActivity implements View.OnClickListener
                 final String uri = mEditText.getText().toString();
                 final SharedPreferences user = getSharedPreferences("user", MODE_PRIVATE);
                 boolean isFirst = user.getBoolean("isFirst", true);
+
                 if (isFirst) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(check_activity.this);
                     builder.setCancelable(false);

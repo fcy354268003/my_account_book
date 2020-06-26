@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ public class ContainerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
         initController();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment[1]).addToBackStack("fragment").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment[1]).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
         currentFragment = fragment[1];
         bottomNavigationView.setSelectedItemId(R.id.today);
     }
@@ -43,7 +44,7 @@ public class ContainerActivity extends AppCompatActivity {
                         currentFragment = fragment[2];
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, currentFragment).addToBackStack("fragment").commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, currentFragment).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
                 return true;
             }
         });
