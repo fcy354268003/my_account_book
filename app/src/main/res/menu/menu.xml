@@ -9,8 +9,5 @@
         android:id="@+id/today"
         android:icon="@drawable/today"
         android:title="今日" />
-    <item
-        android:id="@+id/mine"
-        android:icon="@drawable/mine"
-        android:title="我的" />
+
 </menu>

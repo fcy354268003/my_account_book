@@ -39,7 +39,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="***"
-            android:textColor="#000"
+            android:textColor="#B003A9F4"
             android:textSize="20sp" />
 
         <TextView
@@ -58,8 +58,9 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="***"
-            android:textColor="#000"
-            android:textSize="20sp" />
+            android:textColor="#B003A9F4"
+            android:textSize="20sp"
+            />
     </LinearLayout>
 
     <View
