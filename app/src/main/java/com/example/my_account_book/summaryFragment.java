@@ -56,6 +56,7 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_summary, container, false);
+        view.getBackground().setAlpha(100);
         recyclerView = view.findViewById(R.id.cost_list);
         start_date = view.findViewById(R.id.start_date);
         end_date = view.findViewById(R.id.end_date);

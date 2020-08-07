@@ -12,9 +12,10 @@
 
         <ImageView
             android:id="@+id/left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="80dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="80dp"
             android:src="@drawable/guide_l" />
 
         <TextView
@@ -23,20 +24,21 @@
             android:layout_height="wrap_content"
             android:text="日期："
             android:textSize="20sp"
-            android:textColor="#B003A9F4"/>
+            android:textColor="#9C27B0"/>
 
         <TextView
             android:id="@+id/today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#B003A9F4"
+            android:textColor="#9C27B0"
             android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="80dp"
+            android:scaleType="fitXY"
             android:src="@drawable/guide_r" />
 
     </LinearLayout>

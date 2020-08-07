@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -49,7 +50,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     private TextView total;
     private Button bSave, bEdit;
     private EditText extra_cost11;
-    private RefreshLayout refreshLayout;
+    private SmartRefreshLayout refreshLayout;
     private int timeDifference;
 
     public TodayFragment() {
@@ -75,6 +76,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         View inflate = inflater.inflate(R.layout.activity_main, container, false);
         super.onCreate(savedInstanceState);
         refreshLayout = inflate.findViewById(R.id.refreshLayout);
+        refreshLayout.getBackground().setAlpha(150);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -121,6 +123,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         init();
         bSave.setOnClickListener(this);
         bEdit.setOnClickListener(this);
+
         return inflate;
     }
 

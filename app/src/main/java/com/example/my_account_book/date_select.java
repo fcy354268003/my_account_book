@@ -29,6 +29,8 @@ public class date_select extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_select);
+        View view = findViewById(R.id.all_view);
+        view.getBackground().setAlpha(180);
         String stringExtra = getIntent().getStringExtra("time");
         String[] split = stringExtra.split("-");
         year = findViewById(R.id.year);

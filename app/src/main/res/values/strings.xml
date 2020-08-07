@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">my_account_book</string>
-
+    <style name="hello_blank_fragment">今日</style>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
