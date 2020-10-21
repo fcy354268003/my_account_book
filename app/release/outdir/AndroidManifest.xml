@@ -9,14 +9,14 @@
             </intent-filter>
         </receiver>
         <service android:enabled="true" android:exported="false" android:name="com.example.my_account_book.MyService"/>
-        <activity android:name="com.example.my_account_book.date_select" android:parentActivityName="com.example.my_account_book.check_activity"/>
-        <activity android:name="com.example.my_account_book.check_activity">
+        <activity android:name="com.example.my_account_book.DateSelect" android:parentActivityName="com.example.my_account_book.CheckActivity"/>
+        <activity android:name="com.example.my_account_book.CheckActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.example.my_account_book.MainActivity" android:parentActivityName="com.example.my_account_book.check_activity"/>
+        <activity android:name="com.example.my_account_book.MainActivity" android:parentActivityName="com.example.my_account_book.CheckActivity"/>
         <activity android:exported="true" android:name="androidx.biometric.DeviceCredentialHandlerActivity" android:theme="@style/DeviceCredentialHandlerTheme"/>
     </application>
 </manifest>

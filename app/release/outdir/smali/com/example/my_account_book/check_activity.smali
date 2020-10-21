@@ -1,13 +1,13 @@
 .class public Lcom/example/my_account_book/check_activity;
 .super Lcom/example/my_account_book/BaseActivity;
-.source "check_activity.java"
+.source "CheckActivity.java"
 
 # interfaces
 .implements Landroid/view/View$OnClickListener;
 
 
 # static fields
-.field private static final TAG:Ljava/lang/String; = "check_activity"
+.field private static final TAG:Ljava/lang/String; = "CheckActivity"
 
 
 # instance fields

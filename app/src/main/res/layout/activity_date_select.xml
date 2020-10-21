@@ -3,14 +3,15 @@
     android:id="@+id/all_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bac3"
     android:gravity="center_vertical"
-    android:orientation="vertical"
-    android:background="@drawable/flower">
+    android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Spinner
@@ -23,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="年"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/month"
@@ -37,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="月"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/day"
@@ -50,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="日"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <Button
@@ -58,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="350dp"
         android:background="@drawable/btn_background"
         android:text="确认" />
 </LinearLayout>

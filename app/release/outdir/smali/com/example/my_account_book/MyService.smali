@@ -4,7 +4,7 @@
 
 
 # static fields
-.field private static final CHANNEL_ID:Ljava/lang/String; = "check_activity"
+.field private static final CHANNEL_ID:Ljava/lang/String; = "CheckActivity"
 
 
 # direct methods
@@ -34,7 +34,7 @@
 
     const-string v2, "channel_name"
 
-    const-string v3, "check_activity"
+    const-string v3, "CheckActivity"
 
     invoke-direct {v1, v3, v2, v0}, Landroid/app/NotificationChannel;-><init>(Ljava/lang/String;Ljava/lang/CharSequence;I)V
 
@@ -89,7 +89,7 @@
     .line 38
     new-instance v2, Landroidx/core/app/NotificationCompat$Builder;
 
-    const-string v3, "check_activity"
+    const-string v3, "CheckActivity"
 
     invoke-direct {v2, p0, v3}, Landroidx/core/app/NotificationCompat$Builder;-><init>(Landroid/content/Context;Ljava/lang/String;)V
 

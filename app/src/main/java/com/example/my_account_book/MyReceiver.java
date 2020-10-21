@@ -39,7 +39,7 @@ public class MyReceiver extends BroadcastReceiver {
     }
 
     public void createAndUseNotification(Context context) {
-        Intent intent = new Intent(context, check_activity.class);
+        Intent intent = new Intent(context, CheckActivity.class);
         intent.putExtra("channel", "notification");
         TaskStackBuilder builder1 = TaskStackBuilder.create(context);
         builder1.addNextIntent(intent);
@@ -55,7 +55,7 @@ public class MyReceiver extends BroadcastReceiver {
         managerCompat.notify(1, notification);
     }
 
-    private static final String CHANNEL_ID = "check_activity";
+    private static final String CHANNEL_ID = "CheckActivity";
 
     // 必须在通知前 调用该方法 否则 被系统 刷掉
     public void createNotificationChannel(Context context) {

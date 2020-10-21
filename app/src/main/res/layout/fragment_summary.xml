@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/all_view"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/flower2"
-    android:orientation="vertical"
-    tools:context=".summaryFragment">
+    android:background="@drawable/bac2"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,7 +37,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="***"
-            android:textColor="#B003A9F4"
+            android:textColor="#9C27B0"
             android:textSize="20sp" />
 
         <TextView
@@ -59,9 +56,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="***"
-            android:textColor="#B003A9F4"
-            android:textSize="20sp"
-            />
+            android:textColor="#9C27B0"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <View

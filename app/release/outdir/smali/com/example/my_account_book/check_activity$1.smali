@@ -1,6 +1,6 @@
 .class Lcom/example/my_account_book/check_activity$1;
 .super Ljava/lang/Object;
-.source "check_activity.java"
+.source "CheckActivity.java"
 
 # interfaces
 .implements Landroid/content/DialogInterface$OnClickListener;

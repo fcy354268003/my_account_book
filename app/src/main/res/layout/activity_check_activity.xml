@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/check_back"
+    android:alpha="0.8"
     android:orientation="vertical">
 
     <include layout="@layout/prompting" />
@@ -36,8 +38,6 @@
                 android:layout_centerHorizontal="true"
                 android:hint="用户标识："
                 android:inputType="textPassword" />
-
-
         </RelativeLayout>
     </LinearLayout>
 
@@ -56,32 +56,33 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="15dp"
-        android:text="       切换登录方式:"
         android:gravity="center_horizontal"
+        android:text="       切换登录方式:"
         android:textSize="20sp" />
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/change_way"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:src="@drawable/change_way" />
+        android:src="@drawable/change_way"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/figure"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:src="@drawable/figuremark" />
 
     <ImageView
-        android:layout_marginTop="-15dp"
         android:id="@+id/guide_promptinf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-15dp"
         android:src="@drawable/guide_figure" />
 
 </LinearLayout>

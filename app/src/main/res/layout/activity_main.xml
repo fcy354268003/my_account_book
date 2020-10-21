@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.scwang.smartrefresh.layout.SmartRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/flower1">
+    android:background="@drawable/bac1">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#25009678"
+        android:background="@drawable/back_gra"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -23,51 +22,51 @@
             android:orientation="horizontal">
 
             <TextView
-                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="早餐："
+                android:textColor="#000"
                 android:textSize="20sp" />
 
             <EditText
-                android:textColor="#000"
                 android:id="@+id/breakfast"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="#000" />
 
             <TextView
-                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="午餐："
+                android:textColor="#000"
                 android:textSize="20sp" />
 
             <EditText
-                android:textColor="#000"
                 android:id="@+id/launch"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="#000" />
 
             <TextView
-                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="晚餐："
+                android:textColor="#000"
                 android:textSize="20sp" />
 
             <EditText
-                android:textColor="#000"
                 android:id="@+id/dinner"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="#000" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,19 +78,19 @@
             android:orientation="horizontal">
 
             <TextView
-                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="饮料费："
+                android:textColor="#000"
                 android:textSize="20sp" />
 
             <EditText
-                android:textColor="#000"
                 android:id="@+id/drink_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="#000" />
         </LinearLayout>
 
 
@@ -101,13 +100,13 @@
             android:orientation="vertical">
 
             <EditText
-                android:textColor="#000"
                 android:id="@+id/extra_cost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:enabled="false"
-                android:hint="额外花费说明：" />
+                android:hint="额外花费说明："
+                android:textColor="#000" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -116,32 +115,32 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:textColor="#000"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="额外总费用："
+                    android:textColor="#000"
                     android:textSize="20sp" />
 
                 <EditText
-                    android:textColor="#000"
                     android:id="@+id/extra_cost1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:enabled="false"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:textColor="#000" />
             </LinearLayout>
 
         </LinearLayout>
 
         <TextView
-            android:textColor="#000"
             android:id="@+id/total_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="总共花费："
+            android:textColor="#000"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -152,21 +151,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:textColor="#000"
                 android:id="@+id/edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_1"
-                android:text="更改" />
+                android:text="更改"
+                android:textColor="#000" />
 
             <Button
-                android:textColor="#000"
                 android:id="@+id/save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
                 android:background="@drawable/btn_1"
-                android:text="保存" />
+                android:text="保存"
+                android:textColor="#000" />
         </LinearLayout>
 
     </LinearLayout>

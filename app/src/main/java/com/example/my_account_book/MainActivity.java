@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, date_select.class);
+                Intent intent = new Intent(MainActivity.this, DateSelect.class);
                 intent.putExtra("time", time);
                 startActivityForResult(intent, 1);
             }
@@ -98,12 +98,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             today.setDate(time);
             MyToast.showMessage(this, "亲，您在该日期还没有过记录");
         }
-        extra_cost11.setText(today.getExtra_cost() + "");
-        mBreakfast.setText(today.getBreakfast_cost() + "");
-        mLaunch.setText(today.getLunch_cost() + "");
-        mDinner.setText(today.getDinner_cost() + "");
-        total.setText("总共花费：" + today.getTotal());
-        mDrink.setText(today.getDrink() + "");
+        extra_cost11.setText(String.valueOf(today.getExtra_cost()));
+        mBreakfast.setText(String.valueOf(today.getBreakfast_cost()));
+        mLaunch.setText(String.valueOf(today.getLunch_cost()));
+        mDinner.setText(String.valueOf(today.getDinner_cost()));
+        StringBuilder cost_all = new StringBuilder("总共花费：");
+        total.setText(cost_all.append(today.getTotal()));
+        mDrink.setText(String.valueOf(today.getDrink()));
         extra_cost_description.setText(today.getExtra_cost_description());
 
     }
@@ -135,15 +136,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 extra_cost_description.setEnabled(false);
                 double breakfast = 0, launch = 0, dinner = 0, drink = 0, total = 0, extral_cost = 0;
                 if (!TextUtils.isEmpty(mBreakfast.getText().toString()))
-                    breakfast = Double.valueOf(mBreakfast.getText().toString());
+                    breakfast = Double.parseDouble(mBreakfast.getText().toString());
                 if (!TextUtils.isEmpty(mLaunch.getText().toString()))
-                    launch = Double.valueOf(mLaunch.getText().toString());
+                    launch = Double.parseDouble(mLaunch.getText().toString());
                 if (!TextUtils.isEmpty(mDinner.getText().toString()))
-                    dinner = Double.valueOf(mDinner.getText().toString());
+                    dinner = Double.parseDouble(mDinner.getText().toString());
                 if (!TextUtils.isEmpty(mDrink.getText().toString()))
-                    drink = Double.valueOf(mDrink.getText().toString());
+                    drink = Double.parseDouble(mDrink.getText().toString());
                 if (!TextUtils.isEmpty(extra_cost11.getText().toString()))
-                    extral_cost = Double.valueOf(extra_cost11.getText().toString());
+                    extral_cost = Double.parseDouble(extra_cost11.getText().toString());
                 total = breakfast + dinner + drink + launch + extral_cost;
                 today.setBreakfast_cost(breakfast);
                 today.setLunch_cost(launch);
@@ -180,7 +181,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 1) {
+            assert data != null;
             Bundle bundle = data.getBundleExtra("bundle");
+            assert bundle != null;
             String newTime = bundle.getInt("year") + "-" + bundle.getInt("month") + "-" + bundle.getInt("day");
             time = newTime;
             mTextView.setText(time);

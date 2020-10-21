@@ -1,12 +1,18 @@
 package com.example.my_account_book;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.res.Configuration;
-import android.content.res.Resources;
+
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
+/**
+ * @author 樊晨阳1
+ *
+ * 完成页面字体大小设置的初始化
+ */
 public class BaseActivity extends AppCompatActivity {
 
     @Override
@@ -14,6 +20,8 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         initFontSize();
+        RecyclerView recyclerView = findViewById(R.id.refreshLayout) ;
+        
     }
 
     private void initFontSize() {
@@ -30,4 +38,6 @@ public class BaseActivity extends AppCompatActivity {
         metrics.scaledDensity = configuration.fontScale * metrics.density;
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
     }
+
+
 }

@@ -1,30 +1,13 @@
 package com.example.my_account_book;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricManager;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
-import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.tv.TvContentRating;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,26 +15,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.litepal.LitePal;
-
-import java.io.File;
-import java.net.URI;
 import java.util.Calendar;
-import java.util.List;
-import java.util.concurrent.Executor;
 
-import javax.crypto.spec.IvParameterSpec;
-
-public class check_activity extends BaseActivity implements View.OnClickListener {
+public class CheckActivity extends BaseActivity implements View.OnClickListener {
     private EditText mEditText;
     private Button mConfirm;
     private boolean isVisibility = false;
-    private static final String TAG = "check_activity";
+    private static final String TAG = "CheckActivity";
     private Switch prompting;
     private ImageView figure, guide_prompt, change_way;
 
@@ -142,10 +114,10 @@ public class check_activity extends BaseActivity implements View.OnClickListener
     }
 
     private void toMain() {
-        Intent intent = new Intent(check_activity.this, ContainerActivity.class);
+        Intent intent = new Intent(CheckActivity.this, ContainerActivity.class);
         startActivity(intent);
         finish();
-        MyToast.showMessage(check_activity.this, "登陆成功");
+        MyToast.showMessage(CheckActivity.this, "登陆成功");
     }
 
 
@@ -158,10 +130,8 @@ public class check_activity extends BaseActivity implements View.OnClickListener
                 boolean isFirst = user.getBoolean("isFirst", true);
 
                 if (isFirst) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(check_activity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CheckActivity.this);
                     builder.setCancelable(false);
-                    View inflate = LayoutInflater.from(check_activity.this).inflate(R.layout.dialog, null, false);
-                    Button confirm = inflate.findViewById(R.id.confirm);
                     builder.setTitle("提示：");
                     builder.setMessage("是否将该用户标识作为你的永久用户标识？");
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -177,7 +147,7 @@ public class check_activity extends BaseActivity implements View.OnClickListener
                     builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            MyToast.showMessage(check_activity.this, "取消成功");
+                            MyToast.showMessage(CheckActivity.this, "取消成功");
                         }
                     });
                     AlertDialog show = builder.show();
@@ -185,7 +155,7 @@ public class check_activity extends BaseActivity implements View.OnClickListener
                     show.show();
                 } else if (uri.equals(user.getString("uri", "#########"))) {
                     toMain();
-                } else MyToast.showMessage(check_activity.this, "登陆失败");
+                } else MyToast.showMessage(CheckActivity.this, "登陆失败");
                 break;
             case R.id.radio_btn:
                 SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);

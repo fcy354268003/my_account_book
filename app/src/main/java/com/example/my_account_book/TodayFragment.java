@@ -76,7 +76,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         View inflate = inflater.inflate(R.layout.activity_main, container, false);
         super.onCreate(savedInstanceState);
         refreshLayout = inflate.findViewById(R.id.refreshLayout);
-        refreshLayout.getBackground().setAlpha(150);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -95,7 +94,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mActivity, date_select.class);
+                Intent intent = new Intent(mActivity, DateSelect.class);
                 intent.putExtra("time", time);
                 startActivityForResult(intent, 1);
             }

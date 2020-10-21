@@ -29,9 +29,9 @@ public class MyService extends Service {
         createAndUseNotification();
         return super.onStartCommand(intent, flags, startId);
     }
-    private static final String CHANNEL_ID = "check_activity";
+    private static final String CHANNEL_ID = "CheckActivity";
     private void  createAndUseNotification(){
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,ContainerActivity.class);
         TaskStackBuilder builder1 = TaskStackBuilder.create(this);
         builder1.addNextIntent(intent);
         PendingIntent pendingIntent = builder1.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);

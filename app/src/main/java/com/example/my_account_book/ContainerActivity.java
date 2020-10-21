@@ -1,23 +1,24 @@
 package com.example.my_account_book;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-
+import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * @author 樊晨阳1
+ * 主页面的容器Activity
+ */
 public class ContainerActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private Fragment[] fragment = new Fragment[]{new summaryFragment(), new TodayFragment()};
     private Fragment currentFragment;
     public static String time;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,5 +46,14 @@ public class ContainerActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+    }
 
 }

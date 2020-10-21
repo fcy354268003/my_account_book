@@ -20,10 +20,8 @@ import android.widget.TextView;
 
 import org.litepal.LitePal;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -56,7 +54,7 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_summary, container, false);
-        view.getBackground().setAlpha(100);
+        view.getBackground().setAlpha(60);
         recyclerView = view.findViewById(R.id.cost_list);
         start_date = view.findViewById(R.id.start_date);
         end_date = view.findViewById(R.id.end_date);
@@ -107,12 +105,12 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initData() {
-        images.add(R.drawable.bre);
-        images.add(R.drawable.lun);
-        images.add(R.drawable.din);
-        images.add(R.drawable.dri);
+        images.add(R.drawable.imgbra);
+        images.add(R.drawable.imglun);
+        images.add(R.drawable.imgdin);
+        images.add(R.drawable.imgdri);
         images.add(R.drawable.oth);
-        images.add(R.drawable.otot);
+        images.add(R.drawable.imgmon);
         for (int i = 0; i < 6; i++) {
             costs.add("花费：");
         }
@@ -143,7 +141,7 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
                 request = 23;
                 break;
         }
-        Intent intent = new Intent(mActivity, date_select.class);
+        Intent intent = new Intent(mActivity, DateSelect.class);
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-M-d");
         String format = simpleDateFormat.format(date);

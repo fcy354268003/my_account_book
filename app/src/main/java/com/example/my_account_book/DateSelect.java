@@ -16,21 +16,19 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class date_select extends BaseActivity {
+public class DateSelect extends BaseActivity {
     private Spinner year, month, day;
     private List<String> years = new ArrayList<>();
     private List<String> months = new ArrayList<>();
     private List<String> days = new ArrayList<>();
     private Button mConfirm;
     private List<Integer> time = new ArrayList<>();
-    private static final String TAG = "date_select";
+    private static final String TAG = "DateSelect";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_select);
-        View view = findViewById(R.id.all_view);
-        view.getBackground().setAlpha(180);
         String stringExtra = getIntent().getStringExtra("time");
         String[] split = stringExtra.split("-");
         year = findViewById(R.id.year);

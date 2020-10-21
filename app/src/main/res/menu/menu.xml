@@ -4,10 +4,15 @@
     <item
         android:id="@+id/summary"
         android:icon="@drawable/summary"
-        android:title="总结" />
+        android:title="@string/menu_summary" />
     <item
         android:id="@+id/today"
         android:icon="@drawable/today"
-        android:title="今日" />
+        android:title="@string/menu_today" />
+    <item
+        android:id="@+id/blink"
+        android:icon="@drawable/blink"
+        android:title="@string/menu_blink" />
+
 
 </menu>
