@@ -54,7 +54,6 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_summary, container, false);
-        view.getBackground().setAlpha(60);
         recyclerView = view.findViewById(R.id.cost_list);
         start_date = view.findViewById(R.id.start_date);
         end_date = view.findViewById(R.id.end_date);
@@ -74,18 +73,18 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
 
     private void resolveCost() {
         if (!TextUtils.isEmpty(start) && !TextUtils.isEmpty(end) && start.compareTo(end) <= 0) {
-            List<com.example.my_account_book.Date> dates1 = LitePal.where("date >= ? ", start).find(com.example.my_account_book.Date.class);
-            List<com.example.my_account_book.Date> dates2 = LitePal.where("date <= ?", end).find(com.example.my_account_book.Date.class);
-            List<com.example.my_account_book.Date> dateList = new ArrayList<>();
-            for (com.example.my_account_book.Date date : dates1) {
-                for (com.example.my_account_book.Date date1 : dates2) {
+            List<com.example.my_account_book.bean.Date> dates1 = LitePal.where("date >= ? ", start).find(com.example.my_account_book.bean.Date.class);
+            List<com.example.my_account_book.bean.Date> dates2 = LitePal.where("date <= ?", end).find(com.example.my_account_book.bean.Date.class);
+            List<com.example.my_account_book.bean.Date> dateList = new ArrayList<>();
+            for (com.example.my_account_book.bean.Date date : dates1) {
+                for (com.example.my_account_book.bean.Date date1 : dates2) {
                     if (date.equals(date1)) {
                         dateList.add(date);
                     }
                 }
             }
             double drink = 0, breakfast = 0, lunch = 0, dinner = 0, others = 0,total = 0 ;
-            for (com.example.my_account_book.Date date : dateList) {
+            for (com.example.my_account_book.bean.Date date : dateList) {
                     drink += date.getDrink();
                     breakfast += date.getBreakfast_cost();
                     dinner += date.getDinner_cost();
@@ -141,7 +140,7 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
                 request = 23;
                 break;
         }
-        Intent intent = new Intent(mActivity, DateSelect.class);
+        Intent intent = new Intent(mActivity, DateSelectActivity.class);
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-M-d");
         String format = simpleDateFormat.format(date);

@@ -3,6 +3,6 @@
     <dbname value="cost_account"/>
     <version value="2"/>
     <list>
-        <mapping class="com.example.my_account_book.Date"/>
+        <mapping class="com.example.my_account_book.bean.Date"/>
     </list>
 </litepal>

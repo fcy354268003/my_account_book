@@ -1,29 +1,22 @@
 package com.example.my_account_book;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DateSelect extends BaseActivity {
+public class DateSelectActivity extends BaseActivity {
     private Spinner year, month, day;
     private List<String> years = new ArrayList<>();
     private List<String> months = new ArrayList<>();
     private List<String> days = new ArrayList<>();
     private Button mConfirm;
     private List<Integer> time = new ArrayList<>();
-    private static final String TAG = "DateSelect";
+    private static final String TAG = "DateSelectActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

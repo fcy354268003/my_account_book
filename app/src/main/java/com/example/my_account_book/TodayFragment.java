@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.my_account_book.bean.Date;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
@@ -45,7 +46,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     private String time;
     private TextView change;
     private static final String TAG = "MainActivity";
-    private com.example.my_account_book.Date today;
+    private Date today;
     private EditText mBreakfast, mLaunch, mDinner, mDrink, extra_cost_description;
     private TextView total;
     private Button bSave, bEdit;
@@ -63,17 +64,13 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         outState.putString("time", time);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View inflate = inflater.inflate(R.layout.activity_main, container, false);
+        View inflate = inflater.inflate(R.layout.fragment_today, container, false);
         super.onCreate(savedInstanceState);
         refreshLayout = inflate.findViewById(R.id.refreshLayout);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -94,7 +91,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mActivity, DateSelect.class);
+                Intent intent = new Intent(mActivity, DateSelectActivity.class);
                 intent.putExtra("time", time);
                 startActivityForResult(intent, 1);
             }
@@ -118,6 +115,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
             time = format.format(this.date);
         }
         mTextView.setText(time);
+        ContainerActivity.time = time;
         Log.d(TAG, "onCreate: " + time);
         init();
         bSave.setOnClickListener(this);
@@ -133,11 +131,11 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     }
 
     private void init() {
-        List<Date> dates = LitePal.where("date = ?", time).find(com.example.my_account_book.Date.class);
+        List<Date> dates = LitePal.where("date = ?", time).find(Date.class);
         if (!dates.isEmpty()) {
             today = dates.get(0);
         } else {
-            today = new com.example.my_account_book.Date();
+            today = new Date();
             today.setDate(time);
             MyToast.showMessage(mActivity, "亲，您在该日期还没有过记录");
         }

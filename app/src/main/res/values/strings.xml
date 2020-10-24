@@ -3,6 +3,8 @@
     <string name="menu_blink">闪光</string>
     <string name="menu_today">今日</string>
     <string name="menu_summary">总结</string>
+    <string name="title_img">标题图片</string>
+    <string name="guide_hint">(*^_^*)写下今日的亮光 ~ ~</string>
 
     <style name="hello_blank_fragment">今日</style>
     <!-- TODO: Remove or change this placeholder text -->

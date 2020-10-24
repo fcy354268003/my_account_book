@@ -1,10 +1,10 @@
 .class public Lcom/example/my_account_book/date_select;
 .super Lcom/example/my_account_book/BaseActivity;
-.source "DateSelect.java"
+.source "DateSelectActivity.java"
 
 
 # static fields
-.field private static final TAG:Ljava/lang/String; = "DateSelect"
+.field private static final TAG:Ljava/lang/String; = "DateSelectActivity"
 
 
 # instance fields

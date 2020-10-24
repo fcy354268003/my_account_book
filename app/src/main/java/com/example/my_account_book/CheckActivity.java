@@ -1,5 +1,6 @@
 package com.example.my_account_book;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 
 import android.app.AlarmManager;
@@ -7,17 +8,23 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 
+import com.example.my_account_book.bean.Date;
+
+import org.litepal.LitePal;
+
+import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.List;
 
 public class CheckActivity extends BaseActivity implements View.OnClickListener {
     private EditText mEditText;
@@ -29,16 +36,17 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
 
     private boolean switch_boolean = false;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
         switch_boolean = data.getBoolean("switch", false);
-        Intent intent = new Intent();
+//        Intent intent = new Intent();
 //        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
 //        intent.setData(Uri.parse("package:"+getPackageName()));
 //        startActivity(intent);
-        setContentView(R.layout.activity_check_activity);
+        setContentView(R.layout.activity_check_);
         guide_prompt = findViewById(R.id.guide_promptinf);
         change_way = findViewById(R.id.change_way);
         mEditText = findViewById(R.id.use_name);
@@ -67,9 +75,21 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
 //        if (exist){
 //            MyToast.showMessage(this,"设置成功！！！");
 //        }
-        Log.d(TAG, "onCreate: "+getFilesDir().getAbsolutePath());
-        Log.d(TAG, "onCreate: "+getCacheDir().getAbsolutePath());
-        Log.d(TAG, "onCreate: "+getExternalCacheDir().getAbsolutePath());
+//        Log.d(TAG, "onCreate: "+getFilesDir().getAbsolutePath());
+//        Log.d(TAG, "onCreate: "+getCacheDir().getAbsolutePath());
+//        Log.d(TAG, "onCreate: "+getExternalCacheDir().getAbsolutePath());
+
+
+        LocalDateTime dateTime = LocalDateTime.now();
+        String string = dateTime.toString();
+        String substring = string.substring(0, 10);
+        Log.d(TAG, "onCreate: " + substring);
+        List<Date> dates = LitePal.where("date = ?", substring).find(Date.class);
+        if (dates.size() == 0){
+            Date date = new Date();
+            date.setDate(substring);
+            date.save();
+        }
     }
 
     private void initAlarm(boolean b) {

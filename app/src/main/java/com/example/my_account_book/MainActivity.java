@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
@@ -34,7 +35,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private String time;
     private TextView change;
     private static final String TAG = "MainActivity";
-    private com.example.my_account_book.Date today;
+    private com.example.my_account_book.bean.Date today;
     private EditText mBreakfast, mLaunch, mDinner, mDrink, extra_cost_description;
     private TextView total;
     private Button bSave, bEdit;
@@ -45,7 +46,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_today);
         refreshLayout = findViewById(R.id.refreshLayout);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -65,7 +66,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DateSelect.class);
+                Intent intent = new Intent(MainActivity.this, DateSelectActivity.class);
                 intent.putExtra("time", time);
                 startActivityForResult(intent, 1);
             }
@@ -90,11 +91,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void init() {
-        List<com.example.my_account_book.Date> dates = LitePal.where("date = ?", time).find(com.example.my_account_book.Date.class);
+        List<com.example.my_account_book.bean.Date> dates = LitePal.where("date = ?", time).find(com.example.my_account_book.bean.Date.class);
         if (!dates.isEmpty()) {
             today = dates.get(0);
         } else {
-            today = new com.example.my_account_book.Date();
+            today = new com.example.my_account_book.bean.Date();
             today.setDate(time);
             MyToast.showMessage(this, "亲，您在该日期还没有过记录");
         }
@@ -189,6 +190,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mTextView.setText(time);
             init();
         }
+
     }
 
     @Override

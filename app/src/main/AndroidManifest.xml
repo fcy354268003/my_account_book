@@ -10,23 +10,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".ContainerActivity" />
 
-<!--        <receiver-->
-<!--            android:name=".MyReceiver"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="alarm" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
+
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="alarm" />
+            </intent-filter>
+        </receiver>
 
         <service
             android:name=".MyService"
             android:enabled="true"
             android:exported="false" />
+        <activity android:name=".ContainerActivity" />
+        <activity android:name=".FacesSelectActivity"/>
         <activity
-            android:name=".DateSelect"
+            android:name=".DateSelectActivity"
             android:parentActivityName=".CheckActivity" />
         <activity android:name=".CheckActivity">
             <intent-filter>

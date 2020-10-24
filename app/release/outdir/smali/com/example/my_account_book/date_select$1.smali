@@ -1,6 +1,6 @@
 .class Lcom/example/my_account_book/date_select$1;
 .super Ljava/lang/Object;
-.source "DateSelect.java"
+.source "DateSelectActivity.java"
 
 # interfaces
 .implements Landroid/view/View$OnClickListener;
@@ -59,7 +59,7 @@
 
     move-result-object p1
 
-    const-string v0, "DateSelect"
+    const-string v0, "DateSelectActivity"
 
     invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
