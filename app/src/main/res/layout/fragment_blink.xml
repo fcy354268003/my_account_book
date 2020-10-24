@@ -15,25 +15,76 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rl_backPic"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="300dp"
             android:background="#aaa">
 
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_editNote"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_alignParentBottom="true"-->
+            <!--                android:onClick="@{() -> mFragment.changeState()}"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="编辑"-->
+            <!--                android:textColor="#000"-->
+            <!--                android:textSize="25sp"-->
+            <!--                android:visibility="gone" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_save"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_alignParentEnd="true"-->
+            <!--                android:layout_alignParentBottom="true"-->
+            <!--                android:onClick="@{() -> mFragment.saveTheNote()}"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="保存"-->
+            <!--                android:textColor="#000"-->
+            <!--                android:textSize="25sp"-->
+            <!--                android:visibility="gone" />-->
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="@{() -> mFragment.addBackgroundPic()}"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/iv_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="@{() -> mFragment.addBackgroundPic()}"
+                android:src="@drawable/ic_baseline_add_24" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <TextView
+                android:id="@+id/tv_editNote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> mFragment.changeState()}"
+                android:padding="10dp"
+                android:text="编辑"
+                android:textColor="#000"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="#aaa"
+                android:onClick="@{() -> mFragment.saveTheNote()}"
                 android:padding="10dp"
                 android:text="保存"
                 android:textColor="#000"
                 android:textSize="25sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_baseline_add_24" />
         </RelativeLayout>
 
         <LinearLayout
@@ -101,9 +152,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
+            android:enabled="false"
             android:hint="@string/guide_hint"
             android:padding="10dp"
             android:textColor="#000"
-            android:textColorHint="@color/colorGrey" />
+            android:textColorHint="#7E03A9F4" />
     </LinearLayout>
 </layout>

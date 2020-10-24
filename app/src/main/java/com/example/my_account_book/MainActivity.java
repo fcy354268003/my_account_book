@@ -1,6 +1,9 @@
 package com.example.my_account_book;
 
+import android.content.ContentProvider;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -95,8 +99,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (!dates.isEmpty()) {
             today = dates.get(0);
         } else {
-            today = new com.example.my_account_book.bean.Date();
-            today.setDate(time);
+            today = new com.example.my_account_book.bean.Date(time);
             MyToast.showMessage(this, "亲，您在该日期还没有过记录");
         }
         extra_cost11.setText(String.valueOf(today.getExtra_cost()));
@@ -178,9 +181,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult: ");
         if (requestCode == 1 && resultCode == 1) {
             assert data != null;
             Bundle bundle = data.getBundleExtra("bundle");

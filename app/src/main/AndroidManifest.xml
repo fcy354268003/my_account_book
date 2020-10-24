@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.my_account_book">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name="org.litepal.LitePalApplication"
         android:allowBackup="true"
@@ -25,8 +27,9 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="false" />
+
         <activity android:name=".ContainerActivity" />
-        <activity android:name=".FacesSelectActivity"/>
+        <activity android:name=".FacesSelectActivity" />
         <activity
             android:name=".DateSelectActivity"
             android:parentActivityName=".CheckActivity" />
@@ -37,9 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:parentActivityName=".CheckActivity" />-->
+        <!--        <activity-->
+        <!--            android:name=".MainActivity"-->
+        <!--            android:parentActivityName=".CheckActivity" />-->
     </application>
 
 </manifest>

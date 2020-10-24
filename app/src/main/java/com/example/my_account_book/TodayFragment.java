@@ -65,7 +65,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -135,8 +134,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         if (!dates.isEmpty()) {
             today = dates.get(0);
         } else {
-            today = new Date();
-            today.setDate(time);
+            today = new Date(time);
             MyToast.showMessage(mActivity, "亲，您在该日期还没有过记录");
         }
         extra_cost11.setText(today.getExtra_cost() + "");

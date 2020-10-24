@@ -1,13 +1,19 @@
 package com.example.my_account_book;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,8 +26,10 @@ import android.widget.Switch;
 
 import com.example.my_account_book.bean.Date;
 
+import org.json.JSONObject;
 import org.litepal.LitePal;
 
+import java.security.Permission;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
@@ -84,10 +92,10 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         String string = dateTime.toString();
         String substring = string.substring(0, 10);
         Log.d(TAG, "onCreate: " + substring);
+//        LitePal.deleteAll(Date.class);
         List<Date> dates = LitePal.where("date = ?", substring).find(Date.class);
-        if (dates.size() == 0){
-            Date date = new Date();
-            date.setDate(substring);
+        if (dates.size() == 0) {
+            Date date = new Date(substring);
             date.save();
         }
     }
@@ -208,5 +216,22 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
+
+    public static final int PERMISSION = 111;
+
+    /**
+     * 检查是否有权限 设置图片
+     *
+     * @param context context
+     * @return true:有权限
+     */
+    public static boolean checkPermission(Activity context) {
+        int i = ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (i != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, CheckActivity.PERMISSION);
+            return false;
+        }
+        return true;
+    }
 
 }

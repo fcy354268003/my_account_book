@@ -1,5 +1,7 @@
 package com.example.my_account_book.bean;
 
+import android.net.Uri;
+
 import androidx.annotation.Nullable;
 
 import org.litepal.crud.LitePalSupport;
@@ -29,11 +31,23 @@ public class Date extends LitePalSupport {
     private String content;
     private int stateOrder;
     private int weatherOrder;
+    private String picPath;
 
-    public Date(){
+    public String getPicPath() {
+        return picPath;
+    }
+
+    public void setPicPath(String picPath) {
+        this.picPath = picPath;
+    }
+
+    public Date(String date) {
         extra_cost_description = "";
         content = "";
+        picPath = "";
+        this.date = date;
     }
+
     public double getExtra_cost() {
         return extra_cost;
     }
@@ -60,10 +74,10 @@ public class Date extends LitePalSupport {
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        if(obj instanceof Date){
+        if (obj instanceof Date) {
             Date date1 = (Date) obj;
             return date.equals(date1.date);
-        }else return false;
+        } else return false;
     }
 
     @Override
