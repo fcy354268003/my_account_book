@@ -28,21 +28,20 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".ContainerActivity" />
+        <activity android:name=".ContainerActivity"
+            android:excludeFromRecents="true"/>
         <activity android:name=".FacesSelectActivity" />
         <activity
             android:name=".DateSelectActivity"
             android:parentActivityName=".CheckActivity" />
-        <activity android:name=".CheckActivity">
+        <activity android:name=".CheckActivity"
+            android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--        <activity-->
-        <!--            android:name=".MainActivity"-->
-        <!--            android:parentActivityName=".CheckActivity" />-->
-    </application>
 
+    </application>
 </manifest>

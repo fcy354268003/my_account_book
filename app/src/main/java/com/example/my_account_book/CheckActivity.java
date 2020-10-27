@@ -111,6 +111,9 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         intent1.setAction("alarm");
         intent2.setAction("alarm");
         intent0.setAction("alarm");
+        intent0.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        intent1.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        intent2.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         PendingIntent pendingIntent0 = PendingIntent.getBroadcast(this, 0, intent0, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);

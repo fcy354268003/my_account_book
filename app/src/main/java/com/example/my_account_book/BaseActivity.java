@@ -3,8 +3,10 @@ package com.example.my_account_book;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 
@@ -13,7 +15,7 @@ import android.util.DisplayMetrics;
  *
  * 完成页面字体大小设置的初始化
  */
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +41,11 @@ public class BaseActivity extends AppCompatActivity {
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setAction(Intent.ACTION_MAIN);
+        startActivity(intent);
+    }
 }

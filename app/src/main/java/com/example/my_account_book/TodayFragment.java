@@ -144,7 +144,6 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         total.setText("总共花费：" + today.getTotal());
         mDrink.setText(today.getDrink() + "");
         extra_cost_description.setText(today.getExtra_cost_description());
-
     }
 
     @Override
