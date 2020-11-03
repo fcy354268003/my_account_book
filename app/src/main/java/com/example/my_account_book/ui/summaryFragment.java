@@ -1,6 +1,7 @@
-package com.example.my_account_book;
+package com.example.my_account_book.ui;
 
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.my_account_book.widget.MyRecycleAdapter;
+import com.example.my_account_book.R;
 
 import org.litepal.LitePal;
 
@@ -71,6 +75,12 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ObjectAnimator.ofFloat(recyclerView,"alpha",0,1).setDuration(1500).start();
+    }
+
     private void resolveCost() {
         if (!TextUtils.isEmpty(start) && !TextUtils.isEmpty(end) && start.compareTo(end) <= 0) {
             List<com.example.my_account_book.bean.Date> dates1 = LitePal.where("date >= ? ", start).find(com.example.my_account_book.bean.Date.class);
@@ -99,6 +109,7 @@ public class summaryFragment extends Fragment implements View.OnClickListener {
             costs.set(4,"花费："+others);
             costs.set(5,"花费："+ total);
             myRecycleAdapter.notifyDataSetChanged();
+            ObjectAnimator.ofFloat(recyclerView,"alpha",0,1).setDuration(1500).start();
         }
 
     }

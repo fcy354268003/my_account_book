@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import com.example.my_account_book.widget.MyAdapter;
+import com.example.my_account_book.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

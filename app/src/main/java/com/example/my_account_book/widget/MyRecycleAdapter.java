@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.widget;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,28 +9,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.my_account_book.R;
+
 import java.util.List;
 
 public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.MyViewHolder> {
 
-    private List<Integer> imags;
+    private List<Integer> images;
     private List<String> types;
     private List<String> costs;
-    MyRecycleAdapter(List<Integer> imags,List<String> types,List<String> costs){
+
+    public MyRecycleAdapter(List<Integer> images, List<String> types, List<String> costs) {
         this.costs = costs;
-        this.imags = imags;
+        this.images = images;
         this.types = types;
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle__item_view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle__item_view, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.image.setImageResource(imags.get(position));
+        holder.image.setImageResource(images.get(position));
         holder.cost.setText(costs.get(position));
         holder.type.setText(types.get(position));
     }
@@ -52,4 +56,6 @@ public class MyRecycleAdapter extends RecyclerView.Adapter<MyRecycleAdapter.MyVi
             image = itemView.findViewById(R.id.imagine);
         }
     }
+
+
 }

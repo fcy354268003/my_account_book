@@ -1,15 +1,15 @@
-package com.example.my_account_book;
+package com.example.my_account_book.ui;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,12 +24,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 
+import com.example.my_account_book.util.Biometric_tool;
+import com.example.my_account_book.util.MyReceiver;
+import com.example.my_account_book.widget.MyToast;
+import com.example.my_account_book.R;
 import com.example.my_account_book.bean.Date;
 
-import org.json.JSONObject;
 import org.litepal.LitePal;
 
-import java.security.Permission;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
@@ -40,7 +42,7 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
     private boolean isVisibility = false;
     private static final String TAG = "CheckActivity";
     private Switch prompting;
-    private ImageView figure, guide_prompt, change_way;
+    private ImageView figure, guide_prompt;
 
     private boolean switch_boolean = false;
 
@@ -50,19 +52,16 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
         switch_boolean = data.getBoolean("switch", false);
-//        Intent intent = new Intent();
-//        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-//        intent.setData(Uri.parse("package:"+getPackageName()));
-//        startActivity(intent);
+
         setContentView(R.layout.activity_check_);
+
+
         guide_prompt = findViewById(R.id.guide_promptinf);
-        change_way = findViewById(R.id.change_way);
         mEditText = findViewById(R.id.use_name);
         mConfirm = findViewById(R.id.confirm);
         figure = findViewById(R.id.figure);
         prompting = findViewById(R.id.radio_btn);
         prompting.setOnClickListener(this);
-        change_way.setOnClickListener(this);
         figure.setOnClickListener(this);
         mConfirm.setOnClickListener(this);
         prompting.setChecked(switch_boolean);
@@ -76,28 +75,17 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
                 }
             }
         }
-//        Intent intent1 = new Intent(this, MyReceiver.class);
-//        intent1.putExtra("flag",1);
-//        intent1.setAction("alarm");
-//        boolean exist = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_NO_CREATE) != null;
-//        if (exist){
-//            MyToast.showMessage(this,"设置成功！！！");
-//        }
-//        Log.d(TAG, "onCreate: "+getFilesDir().getAbsolutePath());
-//        Log.d(TAG, "onCreate: "+getCacheDir().getAbsolutePath());
-//        Log.d(TAG, "onCreate: "+getExternalCacheDir().getAbsolutePath());
-
 
         LocalDateTime dateTime = LocalDateTime.now();
         String string = dateTime.toString();
         String substring = string.substring(0, 10);
-        Log.d(TAG, "onCreate: " + substring);
-//        LitePal.deleteAll(Date.class);
         List<Date> dates = LitePal.where("date = ?", substring).find(Date.class);
         if (dates.size() == 0) {
             Date date = new Date(substring);
             date.save();
         }
+
+        startAnimation();
     }
 
     private void initAlarm(boolean b) {
@@ -117,10 +105,7 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         PendingIntent pendingIntent0 = PendingIntent.getBroadcast(this, 0, intent0, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
-//        boolean exist = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_NO_CREATE) != null;
-//        if (exist){
-//            MyToast.showMessage(this,"设置成功！！！");
-//        }
+
         if (b) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
@@ -203,19 +188,6 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
                     MyToast.showMessage(this, "指纹识别不可用");
                 }
                 break;
-            case R.id.change_way:
-                if (!isVisibility) {
-                    mEditText.setVisibility(View.GONE);
-                    figure.setVisibility(View.VISIBLE);
-                    guide_prompt.setVisibility(View.VISIBLE);
-                    isVisibility = true;
-                } else {
-                    mEditText.setVisibility(View.VISIBLE);
-                    figure.setVisibility(View.GONE);
-                    guide_prompt.setVisibility(View.GONE);
-                    isVisibility = false;
-                }
-                break;
         }
     }
 
@@ -236,5 +208,13 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         }
         return true;
     }
-
+    public void startAnimation(){
+        ObjectAnimator rotation = ObjectAnimator.ofFloat(mConfirm, "rotation", 0, 360).setDuration(1000);
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(mConfirm, "scaleX", 0, 1).setDuration(1000);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(mConfirm, "scaleY", 0, 1).setDuration(1000);
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(mConfirm, "alpha", 0, 1).setDuration(1000);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.play(rotation).with(scaleX).with(scaleY).with(alpha);
+        animatorSet.start();
+    }
 }

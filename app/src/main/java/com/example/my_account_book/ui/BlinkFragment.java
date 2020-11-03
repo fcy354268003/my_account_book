@@ -1,11 +1,8 @@
-package com.example.my_account_book;
+package com.example.my_account_book.ui;
 
-import android.content.ContentResolver;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -14,6 +11,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,12 +21,13 @@ import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.example.my_account_book.widget.MyToast;
+import com.example.my_account_book.R;
 import com.example.my_account_book.bean.Date;
 import com.example.my_account_book.databinding.FragmentBlinkBinding;
 
 import org.litepal.LitePal;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -53,7 +52,21 @@ public class BlinkFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(fragmentBlinkBinding.ivMode, "rotation", 0f, 360f);
+        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(fragmentBlinkBinding.ivWeather, "rotation", 0f, 360f);
+        objectAnimator.setDuration(1000);
+        objectAnimator1.setDuration(1000);
+        objectAnimator.start();
+        objectAnimator1.start();
+        fragmentBlinkBinding.ivBack.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                addBackgroundPic();
+                return true;
+            }
+        });
     }
+
 
     private static final String TAG = "BlinkFragment";
 

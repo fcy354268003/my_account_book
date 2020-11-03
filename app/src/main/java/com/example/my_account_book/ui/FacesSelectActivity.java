@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,11 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.my_account_book.R;
 import com.example.my_account_book.bean.Date;
-
-import org.litepal.LitePal;
-
-import java.util.List;
 
 public class FacesSelectActivity extends AppCompatActivity {
     private static Date date;

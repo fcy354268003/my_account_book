@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.util;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -12,6 +12,9 @@ import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.example.my_account_book.R;
+import com.example.my_account_book.ui.ContainerActivity;
 
 public class MyService extends Service {
     public MyService() {
@@ -31,7 +34,7 @@ public class MyService extends Service {
     }
     private static final String CHANNEL_ID = "CheckActivity";
     private void  createAndUseNotification(){
-        Intent intent = new Intent(this,ContainerActivity.class);
+        Intent intent = new Intent(this, ContainerActivity.class);
         TaskStackBuilder builder1 = TaskStackBuilder.create(this);
         builder1.addNextIntent(intent);
         PendingIntent pendingIntent = builder1.getPendingIntent(0,PendingIntent.FLAG_UPDATE_CURRENT);

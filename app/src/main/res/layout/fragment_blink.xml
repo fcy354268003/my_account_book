@@ -5,7 +5,7 @@
 
         <variable
             name="mFragment"
-            type="com.example.my_account_book.BlinkFragment" />
+            type="com.example.my_account_book.ui.BlinkFragment" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,36 +20,12 @@
             android:layout_height="300dp"
             android:background="#aaa">
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/tv_editNote"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_alignParentBottom="true"-->
-            <!--                android:onClick="@{() -> mFragment.changeState()}"-->
-            <!--                android:padding="10dp"-->
-            <!--                android:text="编辑"-->
-            <!--                android:textColor="#000"-->
-            <!--                android:textSize="25sp"-->
-            <!--                android:visibility="gone" />-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/tv_save"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_alignParentBottom="true"-->
-            <!--                android:onClick="@{() -> mFragment.saveTheNote()}"-->
-            <!--                android:padding="10dp"-->
-            <!--                android:text="保存"-->
-            <!--                android:textColor="#000"-->
-            <!--                android:textSize="25sp"-->
-            <!--                android:visibility="gone" />-->
 
             <ImageView
                 android:id="@+id/iv_back"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> mFragment.addBackgroundPic()}"
+
                 android:scaleType="centerCrop" />
 
             <ImageView

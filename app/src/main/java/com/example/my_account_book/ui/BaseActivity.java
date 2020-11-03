@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +9,8 @@ import android.content.res.Configuration;
 import android.drm.DrmStore;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+
+import com.example.my_account_book.R;
 
 /**
  * @author 樊晨阳1
@@ -41,11 +43,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         getBaseContext().getResources().updateConfiguration(configuration, metrics);
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent();
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setAction(Intent.ACTION_MAIN);
-        startActivity(intent);
-    }
+
 }

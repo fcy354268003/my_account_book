@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.ui;
 
 
 import android.app.Activity;
@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.my_account_book.widget.MyToast;
+import com.example.my_account_book.R;
 import com.example.my_account_book.bean.Date;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;

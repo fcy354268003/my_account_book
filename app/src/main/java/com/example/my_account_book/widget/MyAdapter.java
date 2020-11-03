@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.widget;
 
 import android.content.Context;
 
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.my_account_book.R;
 
 import java.util.List;
 

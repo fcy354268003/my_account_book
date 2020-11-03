@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.ui;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 
 
+import com.example.my_account_book.R;
 import com.example.my_account_book.bean.Date;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -66,8 +67,9 @@ public class ContainerActivity extends BaseActivity {
         });
     }
 
-        /**
-     *  设置沉浸式
+    /**
+     * 设置沉浸式
+     *
      * @param hasFocus 是否有焦点
      */
     @Override
@@ -79,6 +81,7 @@ public class ContainerActivity extends BaseActivity {
         }
         getWindow().setStatusBarColor(Color.TRANSPARENT);
     }
+
     private static final String TAG = "ContainerActivity";
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -91,13 +94,21 @@ public class ContainerActivity extends BaseActivity {
             if (data != null && (picUri = data.getData()) != null) {
                 List<Date> dates = LitePal.where("date = ?", ContainerActivity.time).find(Date.class);
                 Date date;
-                if(dates.size() == 0){
+                if (dates.size() == 0) {
                     date = new Date(ContainerActivity.time);
-                }else date = dates.get(0);
+                } else date = dates.get(0);
                 date.setPicPath("content://" + picUri.getAuthority() + picUri.getPath());
-                date.saveOrUpdate("date = ?",ContainerActivity.time);
+                date.saveOrUpdate("date = ?", ContainerActivity.time);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setAction(Intent.ACTION_MAIN);
+        startActivity(intent);
     }
 
 }

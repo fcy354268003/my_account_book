@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.util;
 
 import android.app.AlarmManager;
 import android.app.Notification;
@@ -17,6 +17,10 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+
+import com.example.my_account_book.widget.MyToast;
+import com.example.my_account_book.R;
+import com.example.my_account_book.ui.CheckActivity;
 
 import java.util.Calendar;
 

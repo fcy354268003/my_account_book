@@ -2,21 +2,21 @@
     <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <application android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:icon="@mipmap/ic_launcher_round" android:label="我的帐本" android:name="org.litepal.LitePalApplication" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.example.my_account_book.BaseActivity"/>
-        <receiver android:enabled="true" android:exported="true" android:name="com.example.my_account_book.MyReceiver">
+        <activity android:name="com.example.my_account_book.ui.BaseActivity"/>
+        <receiver android:enabled="true" android:exported="true" android:name="com.example.my_account_book.util.MyReceiver">
             <intent-filter>
                 <action android:name="alarm"/>
             </intent-filter>
         </receiver>
-        <service android:enabled="true" android:exported="false" android:name="com.example.my_account_book.MyService"/>
-        <activity android:name="com.example.my_account_book.DateSelectActivity" android:parentActivityName="com.example.my_account_book.CheckActivity"/>
-        <activity android:name="com.example.my_account_book.CheckActivity">
+        <service android:enabled="true" android:exported="false" android:name="com.example.my_account_book.util.MyService"/>
+        <activity android:name="com.example.my_account_book.ui.DateSelectActivity" android:parentActivityName="com.example.my_account_book.ui.CheckActivity"/>
+        <activity android:name="com.example.my_account_book.ui.CheckActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.example.my_account_book.MainActivity" android:parentActivityName="com.example.my_account_book.CheckActivity"/>
+        <activity android:name="com.example.my_account_book.MainActivity" android:parentActivityName="com.example.my_account_book.ui.CheckActivity"/>
         <activity android:exported="true" android:name="androidx.biometric.DeviceCredentialHandlerActivity" android:theme="@style/DeviceCredentialHandlerTheme"/>
     </application>
 </manifest>

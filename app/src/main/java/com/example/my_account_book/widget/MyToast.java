@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.widget;
 
 import android.content.Context;
 import android.widget.Toast;

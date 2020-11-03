@@ -1,4 +1,4 @@
-package com.example.my_account_book;
+package com.example.my_account_book.util;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.FragmentActivity;
+
+import com.example.my_account_book.widget.MyToast;
+import com.example.my_account_book.ui.ContainerActivity;
 
 import java.util.concurrent.Executor;
 
@@ -34,7 +37,7 @@ public class Biometric_tool {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                Intent intent = new Intent(context,ContainerActivity.class);
+                Intent intent = new Intent(context, ContainerActivity.class);
                 context.startActivity(intent);
                 ((FragmentActivity) context).finish();
             }
