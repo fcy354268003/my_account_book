@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <litepal>
     <dbname value="cost_account"/>
-    <version value="11"/>
+    <version value="13"/>
     <list>
         <mapping class="com.example.my_account_book.bean.Date"/>
+        <mapping class="com.example.my_account_book.bean.Item"/>
     </list>
 </litepal>

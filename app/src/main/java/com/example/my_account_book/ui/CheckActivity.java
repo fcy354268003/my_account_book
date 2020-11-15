@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 
+import com.example.my_account_book.bean.Item;
 import com.example.my_account_book.util.Biometric_tool;
 import com.example.my_account_book.util.MyReceiver;
 import com.example.my_account_book.widget.MyToast;
@@ -33,6 +34,7 @@ import com.example.my_account_book.bean.Date;
 import org.litepal.LitePal;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -54,7 +56,6 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         switch_boolean = data.getBoolean("switch", false);
 
         setContentView(R.layout.activity_check_);
-
 
         guide_prompt = findViewById(R.id.guide_promptinf);
         mEditText = findViewById(R.id.use_name);
@@ -78,7 +79,9 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
 
         LocalDateTime dateTime = LocalDateTime.now();
         String string = dateTime.toString();
+        Log.d(TAG, "onCreate: " + dateTime);
         String substring = string.substring(0, 10);
+        Log.d(TAG, "onCreate: " + substring);
         List<Date> dates = LitePal.where("date = ?", substring).find(Date.class);
         if (dates.size() == 0) {
             Date date = new Date(substring);
@@ -115,8 +118,8 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
             calendar.set(Calendar.HOUR_OF_DAY, 7);
             calendar.set(Calendar.MINUTE, 20);
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent0);
-            calendar.set(Calendar.HOUR_OF_DAY, 18);
-            calendar.set(Calendar.MINUTE, 20);
+            calendar.set(Calendar.HOUR_OF_DAY, 13);
+            calendar.set(Calendar.MINUTE, 25);
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent2);
             MyToast.showMessage(this, "提醒设置成功");
         } else {
@@ -188,6 +191,9 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
                     MyToast.showMessage(this, "指纹识别不可用");
                 }
                 break;
+            case R.id.fab_add:
+
+                break;
         }
     }
 
@@ -208,7 +214,8 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         }
         return true;
     }
-    public void startAnimation(){
+
+    public void startAnimation() {
         ObjectAnimator rotation = ObjectAnimator.ofFloat(mConfirm, "rotation", 0, 360).setDuration(1000);
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(mConfirm, "scaleX", 0, 1).setDuration(1000);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(mConfirm, "scaleY", 0, 1).setDuration(1000);
@@ -218,3 +225,4 @@ public class CheckActivity extends BaseActivity implements View.OnClickListener 
         animatorSet.start();
     }
 }
+

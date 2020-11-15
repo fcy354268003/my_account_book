@@ -28,14 +28,15 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".ui.ContainerActivity"
-            android:excludeFromRecents="true"/>
+        <activity
+            android:name=".ui.ContainerActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.FacesSelectActivity" />
         <activity
             android:name=".ui.DateSelectActivity"
             android:parentActivityName=".ui.CheckActivity" />
-        <activity android:name=".ui.CheckActivity"
-            android:excludeFromRecents="true">
+        <activity
+            android:name=".ui.CheckActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.MutableLiveData;
 
 
 import android.content.Intent;
@@ -14,9 +15,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 
 
+import com.example.my_account_book.LiveData.LiveDataManager;
 import com.example.my_account_book.R;
 import com.example.my_account_book.bean.Date;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,12 +40,16 @@ public class ContainerActivity extends BaseActivity {
     public static Fragment[] fragment = new Fragment[]{new summaryFragment(), new TodayFragment(), new BlinkFragment()};
     private Fragment currentFragment;
     public static String time;
+    private LiveDataManager manager;
+    public final static String KEY = "container";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
         initController();
+        manager = LiveDataManager.getInstance();
+        manager.with(KEY, Integer.class).postValue((int) getResources().getDimension(R.dimen.back_img_size));
         getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment[1]).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).commit();
         currentFragment = fragment[1];
         bottomNavigationView.setSelectedItemId(R.id.today);
@@ -75,11 +83,12 @@ public class ContainerActivity extends BaseActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
+        if (hasFocus && this.currentFragment == fragment[2]) {
             View decorView = getWindow().getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
+
     }
 
     private static final String TAG = "ContainerActivity";
@@ -110,5 +119,6 @@ public class ContainerActivity extends BaseActivity {
         intent.setAction(Intent.ACTION_MAIN);
         startActivity(intent);
     }
+
 
 }

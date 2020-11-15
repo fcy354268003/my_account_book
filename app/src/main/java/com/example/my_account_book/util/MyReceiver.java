@@ -103,8 +103,8 @@ public class MyReceiver extends BroadcastReceiver {
             calendar.set(Calendar.HOUR_OF_DAY, 7);
             calendar.set(Calendar.MINUTE, 20);
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent0);
-            calendar.set(Calendar.HOUR_OF_DAY, 18);
-            calendar.set(Calendar.MINUTE, 20);
+            calendar.set(Calendar.HOUR_OF_DAY, 13);
+            calendar.set(Calendar.MINUTE, 25);
             alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent2);
             MyToast.showMessage(context, "提醒设置成功");
         }

@@ -1,176 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/refreshLayout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorGrey" />
-
-    <LinearLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back_gra"
-        android:orientation="vertical"
-        android:padding="20dp">
-
-        <include layout="@layout/date_scale" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="早餐："
-                android:textColor="#000"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/breakfast"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:textColor="#000" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="午餐："
-                android:textColor="#000"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/launch"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:textColor="#000" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="晚餐："
-                android:textColor="#000"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/dinner"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:textColor="#000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:focusable="false"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="饮料费："
-                android:textColor="#000"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/drink_cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:textColor="#000" />
-        </LinearLayout>
-
+        android:background="@drawable/back_gra">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/extra_cost"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:enabled="false"
-                android:hint="额外花费说明："
-                android:textColor="#000" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="额外总费用："
-                    android:textColor="#000"
-                    android:textSize="20sp" />
+                android:orientation="vertical"
+                android:padding="20dp">
 
-                <EditText
-                    android:id="@+id/extra_cost1"
-                    android:layout_width="wrap_content"
+                <include layout="@layout/date_scale" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:enabled="false"
-                    android:inputType="numberDecimal"
-                    android:textColor="#000" />
+                    android:layout_marginTop="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/total_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:text="总共花费："
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/edit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/back_gra"
+                            android:text="更改"
+                            android:textColor="#000" />
+
+                        <Button
+                            android:id="@+id/save"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="80dp"
+                            android:background="@drawable/back_gra"
+                            android:text="保存"
+                            android:textColor="#000" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="早餐："
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/breakfast"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="numberDecimal"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="午餐："
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/launch"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="numberDecimal"
+                        android:textColor="#000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="晚餐："
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/dinner"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="numberDecimal"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:focusable="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="饮料费："
+                        android:textColor="#000"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/drink_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="numberDecimal"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/extra_cost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:enabled="false"
+                        android:hint="额外花费说明："
+                        android:textColor="#000" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="额外总费用："
+                            android:textColor="#000"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/extra_cost1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:enabled="false"
+                            android:inputType="numberDecimal"
+                            android:textColor="#000" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-        <TextView
-            android:id="@+id/total_cost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="总共花费："
-            android:textColor="#000"
-            android:textSize="20sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_1"
-                android:text="更改"
-                android:textColor="#000" />
-
-            <Button
-                android:id="@+id/save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:background="@drawable/btn_1"
-                android:text="保存"
-                android:textColor="#000" />
-        </LinearLayout>
-
-    </LinearLayout>
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:backgroundTint="#fff"
+        android:contentDescription="@string/addCostItem"
+        android:scaleType="centerCrop"
+        android:src="@drawable/add" />
+</RelativeLayout>

@@ -1,16 +1,16 @@
 package com.example.my_account_book.bean;
 
 
-
 import androidx.annotation.Nullable;
 
 import org.litepal.crud.LitePalSupport;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Date extends LitePalSupport {
     // 日期
-
+//yyyy-MM-dd
     private String date;
     /**
      * 账本相关
@@ -23,6 +23,8 @@ public class Date extends LitePalSupport {
     private double drink;
     private String extra_cost_description;
     private double extra_cost;
+
+
     /**
      * 日记相关
      * <p>
@@ -33,6 +35,24 @@ public class Date extends LitePalSupport {
     private int weatherOrder;
     private String picPath;
 
+    //    public List<String> getCause() {
+//        return cause;
+//    }
+//
+//    public void setCause(List<String> cause) {
+//        this.cause = cause;
+//    }
+//
+//    public List<Double> getCost() {
+//        return cost;
+//    }
+//
+//    public void setCost(List<Double> cost) {
+//        this.cost = cost;
+//    }
+//
+//    private List<String> cause;
+//    private List<Double> cost;
     public String getPicPath() {
         return picPath;
     }

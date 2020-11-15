@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -20,16 +19,20 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.my_account_book.widget.MyToast;
 import com.example.my_account_book.R;
 import com.example.my_account_book.bean.Date;
 import com.example.my_account_book.databinding.FragmentBlinkBinding;
+import com.example.my_account_book.widget.MyRecyclerAdapter;
+import com.example.my_account_book.widget.MyToast;
 
 import org.litepal.LitePal;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,12 +68,17 @@ public class BlinkFragment extends Fragment {
                 return true;
             }
         });
+        fragmentBlinkBinding.ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
     private static final String TAG = "BlinkFragment";
 
-    @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
     public void onStart() {
         super.onStart();
@@ -84,16 +92,18 @@ public class BlinkFragment extends Fragment {
             LocalDateTime localDateTime = LocalDateTime.now();
             String today = localDateTime.toString().substring(0, 10);
 
+            Log.d(TAG, "onStart: " + today + date.getDate());
             // 只有当天可以编辑
             if (today.equals(date.getDate())) {
-                Log.d(TAG, "onStart: ");
                 fragmentBlinkBinding.tvEditNote.setVisibility(View.VISIBLE);
                 fragmentBlinkBinding.etContent.setEnabled(true);
                 fragmentBlinkBinding.tvSave.setVisibility(View.VISIBLE);
             }
-            if (TextUtils.isEmpty(date.getContent())) {
+
+            if (!TextUtils.isEmpty(date.getContent())) {
                 fragmentBlinkBinding.etContent.setText(date.getContent());
             }
+
             if (!TextUtils.isEmpty(date.getPicPath())) {
                 Log.d(TAG, "onStart: " + date.getPicPath());
                 String picUri = date.getPicPath();
@@ -117,6 +127,7 @@ public class BlinkFragment extends Fragment {
             date = dates.get(0);
         else date = new Date(ContainerActivity.time);
         FacesSelectActivity.startActivity((ContainerActivity) getContext(), date);
+        getActivity().overridePendingTransition(R.anim.fragment_open_enter, R.anim.fragment_fade_exit);
     }
 
     /**
@@ -125,6 +136,7 @@ public class BlinkFragment extends Fragment {
     public void saveTheNote() {
         date.setContent(fragmentBlinkBinding.etContent.getText().toString());
         date.save();
+        MyToast.showMessage(getActivity(), "保存成功!");
     }
 
     public static final int GET_PIC = 11;
@@ -133,7 +145,10 @@ public class BlinkFragment extends Fragment {
      * 编辑按钮点击事件
      */
     public void changeState() {
-        fragmentBlinkBinding.tvEditNote.setEnabled(true);
+        if(fragmentBlinkBinding.etContent.isEnabled())
+        MyToast.showMessage(getActivity(),"取消编辑(*^_^*)");
+        else MyToast.showMessage(getActivity(),"开始编辑😀");
+        fragmentBlinkBinding.etContent.setEnabled(!fragmentBlinkBinding.etContent.isEnabled());
     }
 
     /**
@@ -155,6 +170,6 @@ public class BlinkFragment extends Fragment {
         fragmentBlinkBinding.ivGuide.setVisibility(View.GONE);
         ImageDecoder.Source source = ImageDecoder.createSource(getContext().getContentResolver(), uri);
         Drawable drawable = ImageDecoder.decodeDrawable(source);
-        fragmentBlinkBinding.rlBackPic.setBackground(drawable);
+        fragmentBlinkBinding.ivBack.setBackground(drawable);
     }
 }

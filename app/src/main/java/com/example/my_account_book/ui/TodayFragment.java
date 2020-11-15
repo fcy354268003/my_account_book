@@ -9,20 +9,28 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import android.widget.TextView;
 
+
+import com.example.my_account_book.bean.Item;
+import com.example.my_account_book.widget.MyRecyclerAdapter;
 import com.example.my_account_book.widget.MyToast;
 import com.example.my_account_book.R;
 import com.example.my_account_book.bean.Date;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.BezierRadarHeader;
@@ -31,12 +39,14 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import org.litepal.LitePal;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * @author fanchenyang
+ * @date 2020/11/9 13:58
  */
 public class TodayFragment extends Fragment implements View.OnClickListener {
     private Activity mActivity;
@@ -55,6 +65,10 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     private EditText extra_cost11;
     private SmartRefreshLayout refreshLayout;
     private int timeDifference;
+    private RecyclerView recyclerView;
+    private FloatingActionButton mFab;
+    private MyRecyclerAdapter<Item> mAdapter;
+    private List<Item> items;
 
     public TodayFragment() {
         // Required empty public constructor
@@ -84,6 +98,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         });
         refreshLayout.setRefreshHeader(new BezierRadarHeader(mActivity).setEnableHorizontalDrag(true));
         mLeft = inflate.findViewById(R.id.left);
+        mFab = inflate.findViewById(R.id.fab_add);
         mLeft.setOnClickListener(this);
         mRight = inflate.findViewById(R.id.right);
         mRight.setOnClickListener(this);
@@ -101,6 +116,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         mDrink = inflate.findViewById(R.id.drink_cost);
         bSave = inflate.findViewById(R.id.save);
         bEdit = inflate.findViewById(R.id.edit);
+        recyclerView = inflate.findViewById(R.id.rv_item);
         total = inflate.findViewById(R.id.total_cost);
         mBreakfast = inflate.findViewById(R.id.breakfast);
         mLaunch = inflate.findViewById(R.id.launch);
@@ -111,7 +127,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         } else if (ContainerActivity.time != null) {
             time = ContainerActivity.time;
         } else {
-            format = new SimpleDateFormat("yyyy-M-d");
+            format = new SimpleDateFormat("yyyy-MM-dd");
             date = new java.util.Date();
             time = format.format(this.date);
         }
@@ -121,9 +137,10 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         init();
         bSave.setOnClickListener(this);
         bEdit.setOnClickListener(this);
-
+        mFab.setOnClickListener(this);
         return inflate;
     }
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -131,6 +148,7 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         mActivity = (Activity) context;
     }
 
+    //初始化数据
     private void init() {
         List<Date> dates = LitePal.where("date = ?", time).find(Date.class);
         if (!dates.isEmpty()) {
@@ -146,6 +164,30 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         total.setText("总共花费：" + today.getTotal());
         mDrink.setText(today.getDrink() + "");
         extra_cost_description.setText(today.getExtra_cost_description());
+
+        items = LitePal.where("uri = ?", time).find(Item.class);
+        Log.d(TAG, "init: " + items.size());
+        mAdapter = new MyRecyclerAdapter<Item>(items) {
+            @Override
+            public int getLayoutId(int viewType) {
+                return R.layout.add_item;
+            }
+
+            @Override
+            public void bindView(MyHolder holder, int position, Item item) {
+                holder.setText(item.getCause(), R.id.et_cause);
+                holder.setText(String.valueOf(item.getCost()), R.id.et_cost);
+                holder.getView(R.id.iv_clear).setOnClickListener(TodayFragment.this);
+            }
+
+            @Override
+            public void addResource(Item data) {
+                items.add(data);
+                mAdapter.notifyItemInserted(items.size() - 1);
+            }
+        };
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
@@ -195,6 +237,17 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
                 today.save();
                 enabled = !enabled;
                 MyToast.showMessage(mActivity, "保存成功");
+
+                for (int i = 0; i < items.size(); i++) {
+                    RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+                    MyRecyclerAdapter.MyHolder childViewHolder = (MyRecyclerAdapter.MyHolder) recyclerView.getChildViewHolder(layoutManager.getChildAt(i));
+                    items.get(i).setCause(((EditText)childViewHolder.getView(R.id.et_cause)).getText().toString());
+                    items.get(i).setCost(Double.parseDouble(((EditText)childViewHolder.getView(R.id.et_cost)).getText().toString()));
+                }
+
+                // 删除以前的东西 存储现在东西
+                Log.d(TAG, "onClick: + save:" + items.size());
+                LitePal.saveAll(items);
                 break;
             case R.id.left:
                 timeDifference--;
@@ -214,7 +267,15 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
                 mTextView.setText(time);
                 init();
                 break;
-            default:
+            case R.id.fab_add:
+                mAdapter.addResource(new Item(time));
+                break;
+            case R.id.iv_clear:
+                int childAdapterPosition = recyclerView.getChildAdapterPosition((View) v.getParent());
+                this.items.get(childAdapterPosition).delete();
+                this.items.remove(childAdapterPosition);
+                mAdapter.notifyDataSetChanged();
+                break;
         }
     }
 
@@ -231,4 +292,5 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
             init();
         }
     }
+
 }
