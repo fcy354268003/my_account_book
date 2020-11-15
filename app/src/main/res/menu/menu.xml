@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/summary"
+        android:icon="@drawable/summary"
+        android:title="@string/menu_summary" />
+    <item
+        android:id="@+id/today"
+        android:icon="@drawable/today"
+        android:title="@string/menu_today" />
+    <item
+        android:id="@+id/blink"
+        android:icon="@drawable/blink"
+        android:title="@string/menu_blink" />
+
+
+</menu>

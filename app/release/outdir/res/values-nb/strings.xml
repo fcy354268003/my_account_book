@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="abc_action_bar_home_description">Naviger hjem</string>
+    <string name="abc_action_bar_up_description">Gå opp</string>
+    <string name="abc_action_menu_overflow_description">Flere alternativer</string>
+    <string name="abc_action_mode_done">Ferdig</string>
+    <string name="abc_activity_chooser_view_see_all">Se alle</string>
+    <string name="abc_activitychooserview_choose_application">Velg en app</string>
+    <string name="abc_capital_off">AV</string>
+    <string name="abc_capital_on">PÅ</string>
+    <string name="abc_menu_alt_shortcut_label">Alt+</string>
+    <string name="abc_menu_ctrl_shortcut_label">Ctrl+</string>
+    <string name="abc_menu_delete_shortcut_label">slett</string>
+    <string name="abc_menu_enter_shortcut_label">enter</string>
+    <string name="abc_menu_function_shortcut_label">Funksjon+</string>
+    <string name="abc_menu_meta_shortcut_label">Meta+</string>
+    <string name="abc_menu_shift_shortcut_label">Shift+</string>
+    <string name="abc_menu_space_shortcut_label">mellomrom</string>
+    <string name="abc_menu_sym_shortcut_label">Sym+</string>
+    <string name="abc_prepend_shortcut_label">Meny+</string>
+    <string name="abc_search_hint">Søk</string>
+    <string name="abc_searchview_description_clear">Slett søket</string>
+    <string name="abc_searchview_description_query">Søkeord</string>
+    <string name="abc_searchview_description_search">Søk</string>
+    <string name="abc_searchview_description_submit">Utfør søket</string>
+    <string name="abc_searchview_description_voice">Talesøk</string>
+    <string name="abc_shareactionprovider_share_with">Del med</string>
+    <string name="abc_shareactionprovider_share_with_application">Del med %s</string>
+    <string name="abc_toolbar_collapse_description">Skjul</string>
+    <string name="accessibility_fingerprint_dialog_help_area">Område for hjelpemelding</string>
+    <string name="confirm_device_credential_password">Bruk passord</string>
+    <string name="default_error_msg">Ukjent feil</string>
+    <string name="fingerprint_dialog_touch_sensor">Trykk på fingeravtrykkssensoren</string>
+    <string name="fingerprint_error_hw_not_available">Maskinvare for fingeravtrykk er ikke tilgjengelig.</string>
+    <string name="fingerprint_error_hw_not_present">Denne enheten har ikke fingeravtrykkssensor</string>
+    <string name="fingerprint_error_lockout">Du har gjort for mange forsøk. Prøv på nytt senere.</string>
+    <string name="fingerprint_error_no_fingerprints">Ingen fingeravtrykk er registrert.</string>
+    <string name="fingerprint_error_user_canceled">Fingeravtrykk-operasjonen ble avbrutt av brukeren.</string>
+    <string name="fingerprint_not_recognized">Ikke gjenkjent</string>
+    <string name="generic_error_user_canceled">Autentiseringen ble avbrutt av brukeren.</string>
+    <string name="search_menu_title">Søk</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+</resources>

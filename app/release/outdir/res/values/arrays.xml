@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="crypto_fingerprint_fallback_prefixes" />
+    <style name="crypto_fingerprint_fallback_vendors" />
+    <style name="hide_fingerprint_instantly_prefixes" />
+</resources>
