@@ -100,9 +100,9 @@ public class BlinkFragment extends Fragment {
                 fragmentBlinkBinding.tvSave.setVisibility(View.VISIBLE);
             }
 
-            if (!TextUtils.isEmpty(date.getContent())) {
+            Log.d(TAG, "onStart: content:" + date.getContent());
                 fragmentBlinkBinding.etContent.setText(date.getContent());
-            }
+
 
             if (!TextUtils.isEmpty(date.getPicPath())) {
                 Log.d(TAG, "onStart: " + date.getPicPath());
@@ -114,6 +114,8 @@ public class BlinkFragment extends Fragment {
                 }
             }
 
+        }else if(fragmentBlinkBinding != null){
+            fragmentBlinkBinding.etContent.setText("");
         }
     }
 
