@@ -28,6 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/back_img_size"
                     android:background="#aaa"
+                    app:layout_collapseParallaxMultiplier="0.8"
                     android:gravity="center"
                     app:layout_collapseMode="parallax">
 

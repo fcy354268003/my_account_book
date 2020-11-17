@@ -107,9 +107,10 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mActivity, DateSelectActivity.class);
+                Intent intent = new Intent(mActivity, NewDateSelectActivity.class);
                 intent.putExtra("time", time);
                 startActivityForResult(intent, 1);
+                getActivity().overridePendingTransition(R.anim.fragment_open_enter,R.anim.fragment_close_exit);
             }
         });
         extra_cost_description = inflate.findViewById(R.id.extra_cost);
@@ -283,10 +284,10 @@ public class TodayFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == 1) {
-            Bundle bundle = data.getBundleExtra("bundle");
-            String newTime = bundle.getInt("year") + "-" + bundle.getInt("month") + "-" + bundle.getInt("day");
-            time = newTime;
+        if (requestCode == 1 && resultCode == 1 && data != null) {
+            if(data.getStringExtra("date").equals("0-"))
+                return;
+            time = data.getStringExtra("date");
             ContainerActivity.time = time;
             mTextView.setText(time);
             init();
