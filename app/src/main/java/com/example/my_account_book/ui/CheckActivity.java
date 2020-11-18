@@ -24,7 +24,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 
-import com.example.my_account_book.bean.Item;
 import com.example.my_account_book.util.Biometric_tool;
 import com.example.my_account_book.util.MyReceiver;
 import com.example.my_account_book.widget.MyToast;
@@ -34,7 +33,6 @@ import com.example.my_account_book.bean.Date;
 import org.litepal.LitePal;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 

@@ -85,10 +85,10 @@ public class BlinkFragment extends Fragment {
         List<Date> dates = LitePal.where("date = ?", ContainerActivity.time).find(Date.class);
         if (dates.size() > 0 && fragmentBlinkBinding != null) {
             date = dates.get(0);
-            Log.d(TAG, "onStart: " + dates.size() + "   " + date.getWeatherOrder() + "  " + date.getStateOrder());
+            Log.d(TAG, "onStart: " + dates.size() + " \n  " + date.getWeatherOrder() + " \n " + date.getStateOrder());
             fragmentBlinkBinding.tvDate.setText("日期：" + date.getDate());
-            fragmentBlinkBinding.ivWeather.setImageResource(FacesSelectActivity.src_state[date.getWeatherOrder()]);
-            fragmentBlinkBinding.ivMode.setImageResource(FacesSelectActivity.src_weather[date.getStateOrder()]);
+            fragmentBlinkBinding.ivWeather.setImageResource(FacesSelectActivity.src_weather[date.getWeatherOrder()]);
+            fragmentBlinkBinding.ivMode.setImageResource(FacesSelectActivity.src_state[date.getStateOrder()]);
             LocalDateTime localDateTime = LocalDateTime.now();
             String today = localDateTime.toString().substring(0, 10);
 

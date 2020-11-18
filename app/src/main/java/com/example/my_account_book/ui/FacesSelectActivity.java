@@ -49,10 +49,11 @@ public class FacesSelectActivity extends AppCompatActivity {
     private static final String TAG = "FacesSelectActivity";
 
     private void onFinish() {
-        Log.d(TAG, "onFinish: " + weatherOrder + stateOrder);
+        Log.d(TAG, "onFinish: " + stateOrder + weatherOrder);
         date.setWeatherOrder(weatherOrder);
         date.setStateOrder(stateOrder);
-        date.saveOrUpdate("date = ?", ContainerActivity.time);
+        boolean b = date.saveOrUpdate("date = ?", ContainerActivity.time);
+        Log.d(TAG, "onFinish: " + b);
         finish();
     }
 
@@ -157,6 +158,8 @@ public class FacesSelectActivity extends AppCompatActivity {
                     if (type == 0)
                         stateOrder = position;
                     else weatherOrder = position;
+
+                    Log.d(TAG, "onClick: " + stateOrder + weatherOrder);
                 }
             });
         }
@@ -175,7 +178,5 @@ public class FacesSelectActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-    }
+
 }
